@@ -1,8 +1,7 @@
-import { ArrowRight, BrainCircuit, Bug, CloudCog, BriefcaseBusiness, Check, ChevronDown, ClipboardCheck, Code2, Database, GraduationCap, Headphones, Layers3, ListChecks, Menu, MessageCircleQuestion, MonitorCog, Play, Rocket, Smartphone, Sparkles, Target, TrendingUp, Users, X } from "lucide-react";
+import { ArrowRight, BadgeCheck, BrainCircuit, Bug, CloudCog, Check, ClipboardCheck, Code2, GraduationCap, Headphones, Layers3, ListChecks, MonitorCog, Play, Rocket, Smartphone, Sparkles, Users } from "lucide-react";
 import { useEffect, useState } from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaXTwitter, FaYoutube } from "react-icons/fa6";
-import { SiCoursera, SiFresh, SiGithub, SiGooglecloud, SiCisco, SiPaytm, SiSentry, SiSupabase, SiUdemy, SiZoho } from "react-icons/si";
-import experienceTeamThree from "@/assets/experience-team-three-waist-up.png";
+import { FaLinkedin } from "react-icons/fa6";
+import { SiCoursera, SiFresh, SiGithub, SiGooglecloud, SiCisco, SiPaytm, SiSentry, SiSupabase, SiUdemy, SiZoho, SiReact, SiTensorflow, SiOpencv, SiPython, SiPostgresql } from "react-icons/si";
 import heroTeamCutout from "@/assets/hero-team-cutout.png";
 import partnerAyesha from "@/assets/partner-ayesha-pink.jpg";
 import partnerArslan from "@/assets/partner-arslan.jpg";
@@ -11,25 +10,9 @@ import workflowConsultation from "@/assets/workflow-consultation.jpg";
 import workflowPlanning from "@/assets/workflow-planning.jpg";
 import workflowDevelopment from "@/assets/workflow-development.jpg";
 import workflowDeployment from "@/assets/workflow-deployment.jpg";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-const navItems = ["Home", "Internships", "Services", "Courses", "Career", "Contact Us", "About Us"];
-const internshipLinks = [{
-  label: "Apply for Internship",
-  href: "#apply",
-  icon: BriefcaseBusiness
-}, {
-  label: "How It Works",
-  href: "#how-it-works",
-  icon: Play
-}, {
-  label: "Career Fields",
-  href: "#career-fields",
-  icon: Target
-}, {
-  label: "FAQs",
-  href: "#faq",
-  icon: MessageCircleQuestion
-}];
+import { Header, Footer } from "@/components/layout";
 const partnerGroups = ["All partners", "Technology", "Learning", "Campus network"];
 const partners = [{
   name: "Google Cloud",
@@ -83,135 +66,109 @@ const partners = [{
   color: "partner-paytm"
 }];
 const services = [{
-  icon: Code2,
-  title: "Web Development",
-  text: "We build high-performance, visually striking web platforms using React, Next.js, and scalable APIs — engineered for speed and reliability.",
-  tags: ["React", "Next.js", "Node.js", "UI/UX", "Performance"],
-  image: workflowDevelopment
+  icon: SiReact,
+  title: "Full Stack Web Development",
+  text: "Intern on live web products end-to-end — from React and Next.js interfaces to Node.js APIs and databases — with a senior engineer reviewing every pull request.",
+  tags: ["React", "Next.js", "Node.js", "APIs", "Mentorship", "MongoDB", "Deployment"]
 }, {
-  icon: Layers3,
-  title: "Software Engineering",
-  text: "From SaaS platforms to enterprise systems, our engineering approach blends reliability, scalability, and modern architecture.",
-  tags: ["Microservices", "Cloud", "Architecture", "API Design"],
-  image: workflowPlanning
+  icon: SiTensorflow,
+  title: "AI & Machine Learning",
+  text: "Work alongside our AI team to design, train, and ship real machine learning features — building the kind of portfolio that gets interviews.",
+  tags: ["ML Pipelines", "Training", "MLOps", "Real Projects", "Data Cleaning", "Deployment"]
 }, {
-  icon: Database,
-  title: "Data & Analytics",
-  text: "Turn data into insights: data pipelines, analytics platforms, and ML-ready infrastructure to inform product and business decisions.",
-  tags: ["Data Engineering", "Analytics", "BI", "ML"],
-  image: workflowConsultation
+  icon: SiOpencv,
+  title: "Artificial Intelligence",
+  text: "Go deeper into applied AI — computer vision, NLP, and intelligent automation — through guided, project-based internship sprints.",
+  tags: ["Computer Vision", "NLP", "Automation", "Research", "Prompt Engineering", "AI Agents"]
+}, {
+  icon: SiPython,
+  title: "Python Programming",
+  text: "Sharpen your Python fundamentals and take them into production — scripting, automation, backend services, and clean, tested code.",
+  tags: ["Python", "Automation", "Backend", "Clean Code", "Testing", "REST APIs"]
 }, {
   icon: BrainCircuit,
-  title: "AI & Machine Learning",
-  text: "Leverage artificial intelligence and machine learning to automate processes, drive intelligent decision-making, and build predictive models.",
-  tags: ["AI", "Machine Learning", "NLP", "Computer Vision"],
-  image: workflowDeployment
+  title: "Machine Learning",
+  text: "Learn the full ML lifecycle hands-on — data prep, feature engineering, model evaluation — under mentors who ship models for a living.",
+  tags: ["Data Prep", "Feature Eng.", "Evaluation", "Mentorship", "Neural Nets", "Tuning"]
 }, {
-  icon: Smartphone,
-  title: "Mobile Development",
-  text: "Create high-performance native and cross-platform mobile solutions for iOS and Android with exceptional user experiences.",
-  tags: ["React Native", "Flutter", "iOS", "Android"],
-  image: workflowDevelopment
-}, {
-  icon: CloudCog,
-  title: "Cloud & DevOps",
-  text: "Scalable cloud architecture on AWS, Azure, and Google Cloud with robust CI/CD pipelines, automation, and infrastructure as code.",
-  tags: ["AWS", "Azure", "CI/CD", "Kubernetes"],
-  image: workflowDeployment
+  icon: SiPostgresql,
+  title: "Data & Analytics",
+  text: "Turn raw data into real decisions — build pipelines, dashboards, and analytics workflows as part of a live internship project.",
+  tags: ["Data Engineering", "Dashboards", "BI", "SQL", "ETL Pipelines", "Data Visualization"]
 }];
 const workflowSteps = [{
   icon: ClipboardCheck,
-  title: "Consultation & needs analysis",
-  text: "We first understand your challenges to tailor a solution that fits your needs.",
+  title: "Application & needs analysis",
+  text: "We learn your goals and current skill level so we can match you to the right internship track and mentor.",
   image: workflowConsultation
 }, {
   icon: ListChecks,
-  title: "Planning & strategy development",
-  text: "Our team crafts a strategic plan, defining the project roadmap and setting timelines.",
+  title: "Planning & personalized roadmap",
+  text: "Your mentor maps out a clear learning roadmap for your internship, with milestones and timelines you can track.",
   image: workflowPlanning
 }, {
   icon: MonitorCog,
-  title: "Design & development",
-  text: "Our designers create intuitive interfaces, while developers build scalable, robust systems.",
+  title: "Design & hands-on development",
+  text: "You design, build and ship real features on live projects — guided by senior engineers every step of the way.",
   image: workflowDevelopment
 }, {
   icon: Bug,
-  title: "Testing & quality assurance",
-  text: "We rigorously test for security, performance resolving any issues before deployment.",
-  image: workflowDevelopment
+  title: "Testing & quality review",
+  text: "You rigorously test your own work for quality and performance, with code review feedback before anything ships.",
+  image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85"
 }, {
   icon: Headphones,
-  title: "Deployment & support",
-  text: "Smooth launch with long-term technical support and system monitoring.",
+  title: "Launch & career support",
+  text: "Smooth project launch, a portfolio-ready outcome, and ongoing mentorship and career support after you finish.",
   image: workflowDeployment
 }];
 const foundingPartners = [{
   name: "Ayesha",
-  role: "Full Stack Web Developer",
+  position: "Co-Founder and CTO",
+  role: "UI/UX Designer",
   image: partnerAyesha,
   linkedin: "https://www.linkedin.com/in/ayesha/"
 }, {
   name: "Arslan",
-  role: "Full Stack Web Developer",
+  position: "Founder and CEO",
+  role: "Social Media Marketer",
   image: partnerArslan,
   linkedin: "https://www.linkedin.com/in/arslan/"
 }, {
   name: "Samra",
+  position: "Co-Founder and CTO",
   role: "Full Stack Web Developer",
   image: partnerSamra,
   linkedin: "https://www.linkedin.com/in/samra/"
 }];
-const officeLocations = [{
-  name: "United States",
-  href: "https://www.openstreetmap.org/search?query=United%20States"
-}, {
-  name: "United Kingdom",
-  href: "https://www.openstreetmap.org/search?query=United%20Kingdom"
-}, {
-  name: "Pakistan",
-  href: "https://www.openstreetmap.org/search?query=Pakistan"
-}, {
-  name: "Germany",
-  href: "https://www.openstreetmap.org/search?query=Germany"
-}];
-function LocationsMap() {
-  return <div className="location-map-shell">
-      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-132.0%2C5.0%2C83.0%2C63.0&layer=mapnik" className="location-map" title="Swift Lab global locations map" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-      <div className="location-map-links" aria-label="Open office locations on map">
-        {officeLocations.map(location => <a key={location.name} href={location.href} target="_blank" rel="noreferrer">
-            {location.name}
-          </a>)}
-      </div>
-    </div>;
-}
 const journeySteps = [{
   icon: Sparkles,
-  label: "Ideation",
-  title: "Ideation & Architecture",
-  text: "We don't just write code. We architect solutions. Every internship begins with deep-dive sessions to bridge the gap between abstract concepts and technical feasibility.",
+  label: "E-Commerce",
+  title: "Full-Stack E-Commerce Platform",
+  text: "Built and shipped a complete online store with cart, checkout and an admin dashboard — one of 50+ live projects our interns have delivered.",
   image: workflowConsultation,
-  alt: "A collaborative consultation shaping an early technology idea"
+  alt: "A completed e-commerce platform project built by Swift Lab interns"
 }, {
   icon: Users,
-  label: "Collaboration",
-  title: "Pair Programming & Review",
-  text: "Learn the standard of excellence through rigorous code reviews and collaborative sprints with senior engineers.",
+  label: "AI Agent",
+  title: "AI-Powered Support Agent",
+  text: "Designed and deployed a machine learning model that automates real customer replies — a production feature, not a classroom exercise.",
   image: workflowPlanning,
-  alt: "A technology team planning and reviewing work together"
+  alt: "An AI support agent project built by Swift Lab interns"
 }, {
   icon: Code2,
-  label: "Prototyping",
-  title: "Rapid Prototyping",
-  text: "Ship fast, iterate faster. We prioritize functional prototypes that can be tested in real-world environments within weeks.",
+  label: "Mobile App",
+  title: "Cross-Platform Mobile App",
+  text: "Took a client mobile app from wireframe to app-store-ready release, with interns owning the UI, API integration and testing end-to-end.",
   image: workflowDevelopment,
-  alt: "Developers building and testing a working prototype"
+  alt: "A cross-platform mobile app project built by Swift Lab interns"
 }, {
   icon: Rocket,
-  label: "Production",
-  title: "Production Launch",
-  text: "Your code doesn't sit in a sandbox. We push to production, ensuring your contributions reach end-users and drive actual business value.",
+  label: "Dashboard",
+  title: "Real-Time Analytics Dashboard",
+  text: "Shipped a live analytics dashboard processing real user data — the kind of project that goes straight into a portfolio and a resume.",
   image: workflowDeployment,
-  alt: "A completed digital product being prepared for production launch"
+  alt: "A real-time analytics dashboard project built by Swift Lab interns"
 }];
 function JourneyShowcase() {
   const [activeStep, setActiveStep] = useState(0);
@@ -229,9 +186,9 @@ function JourneyShowcase() {
   return <section id="courses" className="journey-showcase border-b border-border px-5 py-14 sm:py-16 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="journey-heading">
-          <p>The journey</p>
+          <p>Our project portfolio</p>
           <h2>
-            Where ideas become <span>pull requests</span>
+            50+ real projects, <span>built and shipped</span>
           </h2>
         </div>
 
@@ -247,9 +204,9 @@ function JourneyShowcase() {
             <h3>{activeJourney.title}</h3>
             <p>{activeJourney.text}</p>
             {activeStep === journeySteps.length - 1 && <Button asChild variant="brand" size="lg">
-                <a href="#apply">
+                <Link to="/career-fields">
                   View past projects <ArrowRight />
-                </a>
+                </Link>
               </Button>}
           </div>
 
@@ -275,89 +232,6 @@ function JourneyShowcase() {
       </div>
     </section>;
 }
-function Brand() {
-  return <a href="#home" className="flex items-center gap-2.5" aria-label="Swift Lab Technologies home">
-      <span className="brand-spectrum relative grid size-10 place-items-center overflow-hidden rounded-md text-primary-foreground shadow-brand">
-        <Rocket className="size-5" aria-hidden="true" />
-        <span className="absolute -bottom-2 -right-2 size-5 rounded-full bg-brand-gold" />
-      </span>
-      <span className="leading-none">
-        <span className="block font-display text-[1.04rem] font-extrabold text-brand-ink">
-          SWIFT LAB
-        </span>
-        <span className="mt-1 block text-[0.58rem] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-          Technologies
-        </span>
-      </span>
-    </a>;
-}
-function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  return <header className="sticky top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-xl">
-      <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-5 lg:px-8">
-        <Brand />
-        <nav className="hidden items-center gap-1 xl:flex" aria-label="Main navigation">
-          {navItems.map(item => item === "Internships" ? <div className="group relative" key={item}>
-                <a href="#internships" className="flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold text-foreground/80 transition-colors hover:bg-accent hover:text-primary">
-                  {item}
-                  <ChevronDown className="size-3.5 transition-transform group-hover:rotate-180" aria-hidden="true" />
-                </a>
-                <div className="invisible absolute left-1/2 top-full w-60 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                  <div className="rounded-md border border-border bg-card p-2 shadow-soft">
-                    {internshipLinks.map(({
-                label,
-                href,
-                icon: Icon
-              }) => <a key={label} href={href} className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-foreground/80 transition-colors hover:bg-accent hover:text-primary">
-                        <Icon className="size-4" aria-hidden="true" />
-                        {label}
-                      </a>)}
-                  </div>
-                </div>
-              </div> : <a key={item} href={`#${item.toLowerCase().replaceAll(" ", "-")}`} className="rounded-md px-3 py-2 text-sm font-semibold text-foreground/80 transition-colors hover:bg-accent hover:text-primary">
-                {item}
-              </a>)}
-        </nav>
-        <div className="hidden items-center gap-2 md:flex">
-          <Button asChild variant="ghost">
-            <a href="#login">Log in</a>
-          </Button>
-          <Button asChild variant="brand">
-            <a href="#register">
-              Register <ArrowRight />
-            </a>
-          </Button>
-        </div>
-        <Button variant="ghost" size="icon" className="xl:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(open => !open)}>
-          {menuOpen ? <X /> : <Menu />}
-        </Button>
-      </div>
-      {menuOpen && <nav className="border-t border-border bg-background px-5 py-5 xl:hidden" aria-label="Mobile navigation">
-          <div className="mx-auto grid max-w-7xl gap-1">
-            {navItems.map(item => item === "Internships" ? <div key={item} className="rounded-md bg-surface-mint/60 p-2">
-                  <a onClick={() => setMenuOpen(false)} href="#internships" className="block rounded-md px-2 py-2 text-sm font-bold text-primary">
-                    Internships
-                  </a>
-                  <div className="grid grid-cols-2 gap-1 border-t border-primary/10 pt-2">
-                    {[["Apply", "#apply"], ["How It Works", "#how-it-works"], ["Career Fields", "#career-fields"], ["FAQs", "#faq"]].map(([label, href]) => <a key={label} onClick={() => setMenuOpen(false)} href={href} className="rounded-md px-2 py-2 text-xs font-semibold text-foreground/75 hover:bg-background hover:text-primary">
-                        {label}
-                      </a>)}
-                  </div>
-                </div> : <a key={item} onClick={() => setMenuOpen(false)} href={`#${item.toLowerCase().replaceAll(" ", "-")}`} className="rounded-md px-3 py-2.5 text-sm font-semibold hover:bg-accent">
-                  {item}
-                </a>)}
-            <div className="mt-3 grid grid-cols-2 gap-2 border-t border-border pt-4">
-              <Button asChild variant="brandOutline">
-                <a href="#login">Log in</a>
-              </Button>
-              <Button asChild variant="brand">
-                <a href="#register">Register</a>
-              </Button>
-            </div>
-          </div>
-        </nav>}
-    </header>;
-}
 export default function HomePage() {
   const [partnerGroup, setPartnerGroup] = useState("All partners");
   const visiblePartners = partnerGroup === "All partners" ? partners : partners.filter(partner => partner.category === partnerGroup);
@@ -369,25 +243,25 @@ export default function HomePage() {
           <div className="mx-auto grid min-h-[560px] max-w-7xl items-center gap-10 px-5 py-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
             <div className="relative z-10 max-w-2xl">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-secondary/70 px-4 py-2 text-xs font-bold uppercase text-brand-ink">
-                <Sparkles className="size-4" aria-hidden="true" /> Applications open for 2026
+                <Sparkles className="size-4" aria-hidden="true" /> World-Class Internship Ecosystem
               </div>
-              <h1 className="text-balance text-5xl font-extrabold leading-[1.08] text-brand-ink sm:text-6xl lg:text-[4.35rem]">
-                Learn by doing. <span className="text-primary">Grow with purpose.</span>
+              <h1 className="text-balance text-4xl font-extrabold leading-[1.12] text-brand-ink sm:text-5xl lg:text-[3.4rem]">
+                International Internships Designed for <span className="text-primary">Practical Mastery,</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-                Step into the tech industry with hands-on internships, dedicated mentors and real
-                projects that build a portfolio employers notice.
+                Empowering students and developers globally through hands-on project execution,
+                expert mentorship, and industry-recognized credentials that recruiters trust.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild variant="brand" size="xl">
-                  <a href="#apply">
+                  <Link to="/apply">
                     Explore internships <ArrowRight />
-                  </a>
+                  </Link>
                 </Button>
                 <Button asChild variant="brandOutline" size="xl">
-                  <a href="#how-it-works">
+                  <Link to="/how-it-works">
                     <Play /> See how it works
-                  </a>
+                  </Link>
                 </Button>
               </div>
               <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-foreground/80">
@@ -400,10 +274,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="hero-blueprint relative mx-auto w-full max-w-2xl overflow-hidden border border-primary/20 p-5 sm:p-8 lg:justify-self-end">
-              <div className="hero-blueprint-index" aria-hidden="true">
-                01 / FIELDWORK
-              </div>
-              <div className="hero-photo-frame relative ml-auto mt-9 w-[88%] sm:w-[84%]">
+              <div className="hero-photo-frame relative mx-auto mt-9 w-[88%] sm:w-[84%]">
                 <img src={heroTeamCutout} width={1200} height={1200} alt="Young technology interns collaborating around a laptop" className="aspect-[4/3] w-full object-cover" />
                 <span className="hero-photo-cross hero-photo-cross-left" aria-hidden="true" />
                 <span className="hero-photo-cross hero-photo-cross-right" aria-hidden="true" />
@@ -422,127 +293,84 @@ export default function HomePage() {
                   </span>
                 </span>
               </div>
-              <div className="absolute right-4 top-16 border-l border-primary/25 pl-3 text-right sm:right-7">
-                <strong className="block text-xs uppercase text-primary">Live projects</strong>
-                <span className="text-[0.65rem] font-semibold text-muted-foreground">
-                  Portfolio-ready work
+              <div className="float-blueprint absolute right-4 top-6 flex items-center gap-3 border border-primary/20 bg-card/95 p-4 shadow-soft sm:right-7">
+                <span className="grid size-11 shrink-0 place-items-center bg-secondary text-primary">
+                  <Rocket />
+                </span>
+                <span>
+                  <strong className="block text-xs uppercase text-primary">Live projects</strong>
+                  <span className="text-[0.65rem] font-semibold text-muted-foreground">
+                    Portfolio-ready work
+                  </span>
                 </span>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="career-fields" className="career-gallery relative overflow-hidden border-b border-border/70 px-5 py-16 sm:py-20 lg:px-8 lg:py-24">
-          <div className="relative mx-auto max-w-7xl">
+        <section id="internships" className="career-gallery relative overflow-hidden border-b border-border/70 px-5 py-14 sm:py-16 lg:px-8 lg:py-16">
+          <div id="career-fields" className="relative mx-auto max-w-7xl">
             <div className="career-gallery-heading mx-auto max-w-4xl text-center">
-              <p className="career-gallery-kicker">The professional transformation</p>
-              <h2>Build the proof that opens doors.</h2>
+              <p className="career-gallery-kicker">Internships available</p>
+              <h2>Choose your track. Build real proof.</h2>
               <p className="career-gallery-lead">
-                Turn ambition into visible, credible work through guided practice and real briefs.<br className="hidden sm:block" />
-                Leave with the confidence, craft and portfolio to step forward.<br className="hidden sm:block" />
-                Step into every room with clarity and a story worth hearing.
+                Three focused internship tracks, each built around live projects, expert
+                mentors and outcomes recruiters actually recognize.
               </p>
             </div>
             <div className="career-gallery-grid">
               {[{
-              icon: GraduationCap,
-              number: "01",
-              title: "Focused Learning",
-              text: "Master the foundations that modern technology teams expect."
+              image: "https://images.unsplash.com/photo-1655635643617-72e0b62b9278?auto=format&fit=crop&w=800&q=85",
+              title: "Artificial Intelligence",
+              text: "Build and deploy real AI/ML models under the guidance of working engineers who ship production systems."
             }, {
-              icon: BriefcaseBusiness,
-              number: "02",
-              title: "Real Briefs",
-              text: "Work through meaningful challenges shaped by industry practice."
+              image: "https://images.unsplash.com/photo-1630524274689-2950ac0fc91e?auto=format&fit=crop&w=800&q=85",
+              title: "Full Stack Web Development",
+              text: "Ship production-grade web applications end-to-end, from React interfaces to Node.js APIs and databases."
             }, {
-              icon: Users,
-              number: "03",
-              title: "Close Mentorship",
-              text: "Get thoughtful feedback from people who know the work."
-            }, {
-              icon: Layers3,
-              number: "04",
-              title: "Portfolio Proof",
-              text: "Present polished outcomes that make your ability visible."
-            }, {
-              icon: TrendingUp,
-              number: "05",
-              title: "Career Presence",
-              text: "Enter interviews with clarity, confidence and a story worth hearing."
+              image: "https://images.unsplash.com/photo-1629752187687-3d3c7ea3a21b?auto=format&fit=crop&w=800&q=85",
+              title: "UI/UX Design",
+              text: "Design polished, user-centered interfaces backed by real research, wireframing and usability testing."
             }].map(({
-              icon: Icon,
-              number,
+              image,
               title,
               text
             }) => <article key={title} className="career-gallery-card">
-                  <div className="career-gallery-card-top">
-                    <span>{number}</span>
-                    <Icon aria-hidden="true" />
+                  <div className="career-gallery-card-media">
+                    <img src={image} alt={`${title} internship track`} loading="lazy" />
+                    <span className="career-gallery-card-badge">
+                      <BadgeCheck aria-hidden="true" /> Verified
+                    </span>
                   </div>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
+                  <div className="career-gallery-card-body">
+                    <span className="career-gallery-card-tag">Internship</span>
+                    <h3>{title}</h3>
+                    <p>{text}</p>
+                    <Button asChild variant="brand" size="sm" className="career-gallery-card-cta">
+                      <Link to="/apply">Apply Now <ArrowRight /></Link>
+                    </Button>
+                  </div>
                 </article>)}
             </div>
             <div className="career-gallery-action">
               <span aria-hidden="true" />
               <Button asChild variant="brand" size="xl">
-                <a href="#apply">Begin your journey <ArrowRight /></a>
+                <Link to="/apply">Begin your journey <ArrowRight /></Link>
               </Button>
               <span aria-hidden="true" />
             </div>
           </div>
         </section>
-        <section id="partners" className="partners-section border-y border-border px-5 py-24 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="text-sm font-bold uppercase text-brand-ink">
-                The ecosystem behind every opportunity
-              </p>
-              <h2 className="mx-auto mt-3 text-balance text-3xl font-extrabold text-brand-ink sm:text-5xl">
-                Tools, Partners &amp; Campus Network
-              </h2>
-              <p className="mx-auto mt-5 max-w-2xl leading-7 text-muted-foreground">
-                Industry platforms and learning partners connected in one practical talent
-                ecosystem.
-              </p>
-            </div>
-            <div className="mt-10 flex flex-wrap justify-center gap-2" role="group" aria-label="Filter partners">
-              {partnerGroups.map(group => <Button key={group} type="button" variant={partnerGroup === group ? "orange" : "brandOutline"} size="sm" onClick={() => setPartnerGroup(group)}>
-                  {group}
-                </Button>)}
-            </div>
-            <div className="partner-marquee mt-12" aria-live="polite">
-              <div className="partner-track">
-                {[...visiblePartners, ...visiblePartners].map(({
-                name,
-                icon: PartnerIcon,
-                color
-              }, index) => <article key={`${name}-${index}`} aria-hidden={index >= visiblePartners.length} className="partner-logo group flex h-20 w-44 shrink-0 items-center gap-3 border border-border bg-card px-4 shadow-soft">
-                      <PartnerIcon className={`size-8 shrink-0 ${color}`} aria-hidden="true" />
-                      <h3 className="text-sm font-extrabold leading-tight text-brand-ink">
-                        {name}
-                      </h3>
-                    </article>)}
-              </div>
-            </div>
-            <div className="mt-10 flex items-center justify-center gap-3 text-center text-sm font-semibold text-muted-foreground">
-              <span className="h-px w-12 bg-brand-coral/35" aria-hidden="true" />
-              One network. Real tools. Career-ready outcomes.
-              <span className="h-px w-12 bg-brand-coral/35" aria-hidden="true" />
-            </div>
-          </div>
-        </section>
-
-        <section id="services" className="px-5 py-24 lg:px-8">
+        <section id="services" className="services-section tracks-offer-section px-5 py-14 lg:px-8 lg:py-16">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-bold uppercase text-brand-ink">Our Services</p>
               <h2 className="mt-3 text-balance text-3xl font-extrabold text-brand-ink sm:text-5xl">
-                Our Expertise in Action
+                Internship Tracks We Offer
               </h2>
               <p className="mt-5 leading-7 text-muted-foreground">
-                Innovation meets execution — a blend of creative design, technical depth, and
-                reliable delivery powering modern digital experiences.
+                Real internships, real mentors, real projects — pick a track and start building
+                a portfolio recruiters actually notice.
               </p>
             </div>
             <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -556,8 +384,8 @@ export default function HomePage() {
                   <span className="expertise-index" aria-hidden="true">
                     0{index + 1}
                   </span>
-                  <span className={`grid size-12 shrink-0 place-items-center rounded-md ${index % 3 === 1 ? "bg-surface-coral text-brand-coral" : "bg-surface-mint text-primary"}`}>
-                    <Icon />
+                  <span className={`grid size-14 shrink-0 place-items-center rounded-md ${index % 3 === 1 ? "bg-surface-coral text-brand-coral" : "bg-surface-mint text-primary"}`}>
+                    <Icon className="size-7" />
                   </span>
                   <h3 className="mt-6 text-xl font-extrabold text-brand-ink sm:text-2xl">
                     {title}
@@ -568,11 +396,12 @@ export default function HomePage() {
                         {tag}
                       </span>)}
                   </div>
-                  <div className="mt-auto flex items-center gap-5 pt-7">
-                    <a href="#contact-us" className="inline-flex items-center gap-2 text-sm font-bold text-primary">
-                      Learn More{" "}
-                      <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                    </a>
+                  <div className="mt-auto flex flex-wrap items-center gap-4 pt-7">
+                    <Button asChild variant="brand" size="sm">
+                      <Link to="/apply">
+                        Apply Now <ArrowRight className="size-4" />
+                      </Link>
+                    </Button>
                     <a href={`#service-${index + 1}`} className="text-sm font-semibold text-muted-foreground underline decoration-border underline-offset-4 hover:text-brand-coral">
                       View details
                     </a>
@@ -580,19 +409,26 @@ export default function HomePage() {
                   </div>
                 </article>)}
             </div>
+            <div className="mt-12 flex justify-center">
+              <Button asChild variant="brand" size="xl">
+                <a href="#internships">
+                  Explore More Internships <ArrowRight />
+                </a>
+              </Button>
+            </div>
           </div>
         </section>
 
-        <section id="workflow" className="workflow-section border-y border-border px-5 py-24 lg:px-8">
-          <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+        <section id="workflow" className="workflow-section border-y border-border px-5 py-14 lg:px-14 lg:py-16">
+          <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
             <div className="max-w-xl text-left lg:sticky lg:top-28">
-              <p className="text-sm font-bold uppercase text-brand-ink">How we work</p>
+              <p className="text-sm font-bold uppercase text-brand-ink">How your internship works</p>
               <h2 className="mt-3 text-balance text-4xl font-extrabold leading-tight text-brand-ink sm:text-6xl">
                 Our 5-step workflow
               </h2>
               <p className="mt-6 max-w-lg text-lg leading-8 text-muted-foreground">
-                Our efficient workflow ensures streamlined IT solutions — from strategy to execution
-                and quality delivery.
+                From application to launch, every intern follows a clear, mentor-guided path —
+                built for real skills and real outcomes.
               </p>
               <div className="mt-8 h-1 w-16 rounded-full bg-brand-coral" aria-hidden="true" />
             </div>
@@ -629,57 +465,28 @@ export default function HomePage() {
         </section>
 
 
-        <section id="internships" className="experience-band relative overflow-hidden border-b border-border">
-          <div className="experience-stage mx-auto max-w-[1440px]">
-            <div className="experience-corner" aria-hidden="true" />
-            <div className="experience-wave experience-wave-back" aria-hidden="true" />
-            <div className="experience-wave experience-wave-left" aria-hidden="true" />
-            <div className="experience-wave experience-wave-front" aria-hidden="true" />
-
-            <div className="experience-copy">
-              <h2 className="experience-title">
-                Empower Your Learners with
-                <span>Work-Based Experience</span>
-              </h2>
-              <p className="experience-description">
-                Schedule a call with us to discover how you can guarantee 100% of your learners
-                access to global work experience to complement the skills they’ve built and
-                accelerate their career development.
-              </p>
-              <Button asChild variant="orange" size="xl" className="experience-button">
-                <a href="mailto:careers@swiftlabtechnologies.com">Request a Demo</a>
-              </Button>
-            </div>
-
-            <img src={experienceTeamThree} width={1024} height={650} loading="lazy" alt="Three learners collaborating around a laptop" className="experience-people" />
-          </div>
-        </section>
-
         <JourneyShowcase />
 
         <section id="founding-partners" className="founders-section relative overflow-hidden px-5 py-14 lg:px-8 lg:py-16">
-          <div className="founders-watermark" aria-hidden="true">LEADERSHIP</div>
+          <div className="founders-watermark" aria-hidden="true">PARTNERSHIP</div>
           <div className="relative mx-auto max-w-7xl">
             <div className="founders-heading-grid">
-              <p className="founders-kicker">Our Core Leadership</p>
+              <p className="founders-kicker">Our Core Partnership</p>
               <h2 className="founders-title">Meet Our Visionaries</h2>
             </div>
 
             <div className="founders-grid">
-              {foundingPartners.map((partner, index) => <article key={partner.name} className="founder-profile group">
+              {foundingPartners.map(partner => <article key={partner.name} className="founder-profile group">
                   <div className="founder-portrait-wrap">
-                    <span className="founder-index" aria-hidden="true">
-                      0{index + 1}
-                    </span>
                     <div className="founder-portrait">
-                      <img src={partner.image} width={640} height={800} loading="lazy" alt={`${partner.name}, Full Stack Web Developer and partner at Swift Lab Technologies`} />
+                      <img src={partner.image} width={640} height={800} loading="lazy" alt={`${partner.name}, ${partner.role} at Swift Lab Technologies`} />
                     </div>
                     <span className="founder-corner founder-corner-top" aria-hidden="true" />
                     <span className="founder-corner founder-corner-bottom" aria-hidden="true" />
                   </div>
                   <div className="founder-details">
                     <div>
-                      <p className="founder-position">Co-Founder and CEO</p>
+                      <p className="founder-position">{partner.position}</p>
                       <h3>{partner.name}</h3>
                       <p className="founder-role">{partner.role}</p>
                     </div>
@@ -692,61 +499,48 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section id="partners" className="partners-section border-y border-border px-5 py-14 lg:px-8 lg:py-16">
+          <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-bold uppercase text-brand-ink">
+                The ecosystem behind every internship
+              </p>
+              <h2 className="mx-auto mt-3 text-balance text-3xl font-extrabold text-brand-ink sm:text-5xl">
+                Tools, Partners &amp; Campus Network
+              </h2>
+              <p className="mx-auto mt-5 max-w-2xl leading-7 text-muted-foreground">
+                Industry platforms and learning partners connected in one practical talent
+                ecosystem — the same tools our interns use on real projects.
+              </p>
+            </div>
+            <div className="mt-10 flex flex-wrap justify-center gap-2" role="group" aria-label="Filter partners">
+              {partnerGroups.map(group => <Button key={group} type="button" variant={partnerGroup === group ? "orange" : "brandOutline"} size="sm" onClick={() => setPartnerGroup(group)}>
+                  {group}
+                </Button>)}
+            </div>
+            <div className="partner-marquee mt-12" aria-live="polite">
+              <div className="partner-track">
+                {[...visiblePartners, ...visiblePartners].map(({
+                name,
+                icon: PartnerIcon,
+                color
+              }, index) => <article key={`${name}-${index}`} aria-hidden={index >= visiblePartners.length} className="partner-logo group flex h-20 w-44 shrink-0 items-center gap-3 border border-border bg-card px-4 shadow-soft">
+                      <PartnerIcon className={`size-8 shrink-0 ${color}`} aria-hidden="true" />
+                      <h3 className="text-sm font-extrabold leading-tight text-brand-ink">
+                        {name}
+                      </h3>
+                    </article>)}
+              </div>
+            </div>
+            <div className="mt-10 flex items-center justify-center gap-3 text-center text-sm font-semibold text-muted-foreground">
+              <span className="h-px w-12 bg-brand-coral/35" aria-hidden="true" />
+              One network. Real tools. Career-ready outcomes.
+              <span className="h-px w-12 bg-brand-coral/35" aria-hidden="true" />
+            </div>
+          </div>
+        </section>
+
       </main>
-      <footer id="about-us" className="site-footer border-t border-border bg-brand-ink text-primary-foreground">
-        <div className="footer-main mx-auto grid max-w-[1440px] border-b border-primary-foreground/15">
-          <div className="footer-brand">
-            <Brand />
-            <p className="mt-6 max-w-md text-sm leading-7 text-primary-foreground/65">
-              Building the next generation of technology talent through practical learning,
-              meaningful projects and thoughtful mentorship.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {[[FaFacebook, "Facebook", "social-facebook"], [FaInstagram, "Instagram", "social-instagram"], [FaXTwitter, "X", "social-x"], [FaLinkedin, "LinkedIn", "social-linkedin"], [FaYoutube, "YouTube", "social-youtube"], [FaTiktok, "TikTok", "social-tiktok"]].map(([Icon, label, colorClass]) => {
-              const SocialIcon = Icon;
-              return <a key={label} href="#about-us" aria-label={label} title={label} className={`footer-social ${colorClass}`}>
-                    <SocialIcon className="size-[22px]" />
-                  </a>;
-            })}
-            </div>
-          </div>
-          <div className="footer-links-grid">
-            <div>
-              <h3 className="footer-heading">Explore</h3>
-              <div className="footer-link-list">
-                <a href="#home">Home</a>
-                <a href="#internships">Internships</a>
-                <a href="#services">Services</a>
-                <a href="#workflow">How it works</a>
-              </div>
-            </div>
-            <div>
-              <h3 className="footer-heading">Company</h3>
-              <div className="footer-link-list">
-                <a href="#about-us">About us</a>
-                <a href="#partners">Partners</a>
-                <a href="#internships">Careers</a>
-                <a href="mailto:careers@swiftlabtechnologies.com">Contact</a>
-              </div>
-            </div>
-          </div>
-          <div id="contact-us" className="footer-locations">
-            <div className="flex items-center justify-between gap-4">
-              <h3 className="footer-heading">Our locations</h3>
-              <span className="rounded-sm bg-primary-foreground/90 px-2 py-1 text-[0.65rem] font-bold uppercase text-brand-ink">
-                Global team
-              </span>
-            </div>
-            <LocationsMap />
-          </div>
-        </div>
-        <div className="footer-bottom mx-auto flex max-w-[1440px] flex-col gap-3 text-xs text-primary-foreground/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Swift Lab Technologies. All rights reserved.</p>
-          <div className="flex gap-5">
-            <a href="#privacy">Privacy</a>
-            <a href="#terms">Terms</a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>;
 }
