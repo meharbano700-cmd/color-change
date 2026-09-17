@@ -96,29 +96,29 @@
   --card-foreground: oklch(0.19 0.045 270);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.19 0.045 270);
-  --primary: oklch(0.47 0.245 286);
+  --primary: oklch(0.47 0.245 255);
   --primary-foreground: oklch(0.99 0.005 255);
-  --secondary: oklch(0.91 0.062 285);
-  --secondary-foreground: oklch(0.28 0.18 286);
+  --secondary: oklch(0.91 0.062 255);
+  --secondary-foreground: oklch(0.28 0.18 255);
   --muted: oklch(0.955 0.018 270);
   --muted-foreground: oklch(0.48 0.045 270);
   --accent: oklch(0.925 0.055 204);
-  --accent-foreground: oklch(0.31 0.15 277);
+  --accent-foreground: oklch(0.31 0.15 255);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.89 0.025 275);
   --input: oklch(0.89 0.025 275);
-  --ring: oklch(0.47 0.245 286);
-  --brand-teal: oklch(0.47 0.245 286);
-  --brand-coral: oklch(0.66 0.25 318);
+  --ring: oklch(0.47 0.245 255);
+  --brand-teal: oklch(0.47 0.245 255);
+  --brand-coral: oklch(0.62 0.16 218);
   --brand-gold: oklch(0.78 0.155 195);
   --brand-ink: oklch(0.18 0.05 272);
-  --brand-violet: oklch(0.47 0.245 286);
+  --brand-violet: oklch(0.47 0.245 255);
   --brand-blue: oklch(0.59 0.22 255);
   --brand-cyan: oklch(0.78 0.155 195);
   --experience-teal: oklch(0.68 0.18 205);
   --surface-soft: oklch(0.97 0.022 276);
-  --surface-mint: oklch(0.92 0.055 284);
+  --surface-mint: oklch(0.92 0.055 255);
   --surface-coral: oklch(0.955 0.042 205);
   --luxe-cream: oklch(0.975 0.016 275);
   --luxe-forest: oklch(0.22 0.06 274);
@@ -128,12 +128,12 @@
   --social-linkedin: #0a66c2;
   --social-youtube: #ff0000;
   --social-tiktok: #00f2ea;
-  --hero: oklch(0.895 0.075 285);
+  --hero: oklch(0.895 0.075 255);
   --shadow-soft: 0 16px 45px oklch(0.24 0.08 275 / 0.1);
-  --shadow-brand: 0 10px 26px oklch(0.47 0.245 286 / 0.3);
-  --shadow-brand-lg: 0 16px 34px oklch(0.47 0.245 286 / 0.38);
+  --shadow-brand: 0 10px 26px oklch(0.47 0.245 255 / 0.3);
+  --shadow-brand-lg: 0 16px 34px oklch(0.47 0.245 255 / 0.38);
   --shadow-coral: 0 12px 30px oklch(0.66 0.25 318 / 0.25);
-  --shadow-workflow: 0 30px 80px oklch(0.18 0.05 272 / 0.15), 0 8px 28px oklch(0.47 0.245 286 / 0.14);
+  --shadow-workflow: 0 30px 80px oklch(0.18 0.05 272 / 0.15), 0 8px 28px oklch(0.47 0.245 255 / 0.14);
   --shadow-story: 0 22px 55px oklch(0.18 0.05 272 / 0.12);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -304,7 +304,7 @@
 
 .hero-section {
   background:
-    linear-gradient(120deg, color-mix(in oklab, var(--brand-violet) 32%, var(--background)) 0%, color-mix(in oklab, var(--brand-cyan) 26%, var(--background)) 55%, color-mix(in oklab, var(--brand-gold) 22%, var(--background)) 100%);
+    linear-gradient(120deg, color-mix(in oklab, var(--brand-violet) 14%, var(--background)) 0%, color-mix(in oklab, var(--brand-cyan) 11%, var(--background)) 55%, color-mix(in oklab, var(--brand-gold) 10%, var(--background)) 100%);
 }
 
 .hero-blueprint,
@@ -575,7 +575,7 @@
   background: var(--luxe-cream);
 }
 .career-gallery::before {
-  content: "SWIFT / 2026";
+  content: "SWIFT LAB";
   position: absolute;
   left: 2rem;
   top: 82%;
@@ -613,8 +613,9 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.85rem;
+  grid-template-columns: repeat(3, minmax(0, 350px));
+  justify-content: center;
+  gap: 1.25rem;
   margin-top: 4rem;
 }
 .career-gallery-card {
@@ -622,7 +623,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  max-width: 385px;
+  max-width: 350px;
   width: 100%;
   margin-inline: auto;
   border: 1px solid color-mix(in oklab, var(--luxe-forest) 18%, transparent);
@@ -636,7 +637,7 @@
 }
 .career-gallery-card-media {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
 }
 .career-gallery-card-media img {
@@ -671,7 +672,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 1.15rem 1.25rem 1.3rem;
+  padding: 0.95rem 1.05rem 1.1rem;
 }
 .career-gallery-card-tag {
   color: var(--brand-coral);
@@ -681,16 +682,16 @@
   letter-spacing: 0.04em;
 }
 .career-gallery-card h3 {
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
   color: var(--luxe-forest);
-  font-size: 1.08rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 .career-gallery-card p {
-  margin-top: 0.45rem;
+  margin-top: 0.4rem;
   color: var(--muted-foreground);
-  font-size: 0.78rem;
-  line-height: 1.55;
+  font-size: 0.74rem;
+  line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -1080,6 +1081,334 @@
 @media (prefers-reduced-motion: reduce) {
   .page-slider-copy { animation: none; }
   .page-slider-dot-progress { animation: none; transform: scaleX(1); }
+}
+
+/* ============ Hero slider variants (all on light backgrounds) ============ */
+
+/* ---- Variant: spotlight (About) — centred copy over a cinematic band ---- */
+.hero-spotlight {
+  background:
+    radial-gradient(120% 90% at 50% -10%, color-mix(in oklab, var(--brand-teal) 10%, transparent) 0%, transparent 60%),
+    var(--background);
+}
+.hero-spotlight-glow {
+  position: absolute;
+  inset-inline: 12%;
+  top: -14rem;
+  height: 26rem;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--brand-gold, var(--brand-coral)) 16%, transparent);
+  filter: blur(80px);
+  z-index: 0;
+}
+.hero-spotlight-band {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 21 / 9;
+  width: 100%;
+  border-radius: 1.4rem;
+  border: 1px solid color-mix(in oklab, var(--brand-teal) 22%, transparent);
+  box-shadow: 0 30px 70px -40px rgb(0 0 0 / 0.45);
+}
+.hero-spotlight-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(255 255 255 / 0.55), transparent 45%);
+  pointer-events: none;
+}
+.hero-spotlight-stat {
+  position: absolute;
+  bottom: 1.1rem;
+  left: 1.1rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--brand-teal) 20%, transparent);
+  background: color-mix(in oklab, var(--card) 92%, transparent);
+  padding: 0.5rem 1.1rem 0.5rem 0.55rem;
+  backdrop-filter: blur(6px);
+  animation: page-slider-fade-up 500ms ease both;
+}
+.hero-spotlight-controls {
+  margin-top: 1.4rem;
+  justify-content: center;
+}
+
+/* ---- Variant: showcase (Services) — arch image left, indexed list right ---- */
+.hero-showcase {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--secondary) 45%, transparent) 0%, transparent 55%),
+    var(--background);
+}
+.hero-showcase-stripe {
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  width: 38%;
+  background: repeating-linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--brand-teal) 7%, transparent) 0 2px,
+    transparent 2px 13px
+  );
+  z-index: 0;
+}
+.hero-showcase-media {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 21rem;
+  margin-inline: auto;
+}
+.hero-showcase-arch {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 4.6;
+  width: 100%;
+  border-radius: 10rem 10rem 1.1rem 1.1rem;
+  border: 1px solid color-mix(in oklab, var(--brand-teal) 25%, transparent);
+  box-shadow: 0 34px 70px -42px rgb(0 0 0 / 0.5);
+}
+.hero-showcase-stat {
+  position: absolute;
+  right: -0.4rem;
+  bottom: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--brand-teal) 22%, transparent);
+  border-radius: 0.8rem;
+  background: var(--card);
+  padding: 0.6rem 0.9rem;
+  box-shadow: 0 16px 34px -22px rgb(0 0 0 / 0.5);
+  animation: page-slider-fade-up 500ms ease both;
+}
+.hero-showcase-index {
+  margin-top: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.6rem;
+}
+.hero-showcase-index-btn {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  gap: 0.75rem;
+  border: none;
+  background: none;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  text-align: left;
+  border-bottom: 1px solid transparent;
+  transition: border-color 200ms ease, opacity 200ms ease;
+  opacity: 0.55;
+}
+.hero-showcase-index-btn:hover { opacity: 0.85; }
+.hero-showcase-index-btn.is-active {
+  opacity: 1;
+  border-bottom-color: var(--brand-coral);
+}
+.hero-showcase-index-num {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--brand-coral);
+  letter-spacing: 0.08em;
+}
+.hero-showcase-index-label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--brand-ink);
+}
+
+/* ---- Variant: stack (Career fields) — tilted photo card deck ---- */
+.hero-stack {
+  background:
+    radial-gradient(80% 60% at 100% 0%, color-mix(in oklab, var(--brand-coral) 9%, transparent) 0%, transparent 65%),
+    var(--background);
+}
+.hero-stack-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--brand-ink) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--brand-ink) 5%, transparent) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(70% 70% at 70% 40%, #000 0%, transparent 100%);
+  z-index: 0;
+}
+.hero-stack-deck {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 4 / 3.4;
+  width: 100%;
+  max-width: 32rem;
+  margin-inline: auto;
+}
+.hero-stack-card {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 1.1rem;
+  border: 1px solid color-mix(in oklab, var(--brand-teal) 20%, transparent);
+  background: var(--card);
+  box-shadow: 0 28px 60px -38px rgb(0 0 0 / 0.55);
+  transition: transform 600ms ease, opacity 600ms ease;
+}
+.hero-stack-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-stack-card-0 { transform: rotate(-1.2deg) translate(0, 0); opacity: 1; z-index: 3; }
+.hero-stack-card-1 { transform: rotate(3deg) translate(4%, 4%) scale(0.95); opacity: 0.55; z-index: 2; }
+.hero-stack-card-2 { transform: rotate(6.5deg) translate(8%, 8%) scale(0.9); opacity: 0.3; z-index: 1; }
+.hero-stack-card-3,
+.hero-stack-card-4 { transform: rotate(9deg) translate(11%, 11%) scale(0.86); opacity: 0.16; z-index: 0; }
+.hero-stack-caption {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 0.7rem;
+  border: 1px solid color-mix(in oklab, var(--brand-teal) 18%, transparent);
+  background: color-mix(in oklab, var(--card) 93%, transparent);
+  padding: 0.45rem 0.75rem;
+  backdrop-filter: blur(5px);
+}
+
+/* ---- Variant: ribbon (Contact) — circular portrait with orbit ring ---- */
+.hero-ribbon {
+  background:
+    linear-gradient(120deg, color-mix(in oklab, var(--secondary) 55%, transparent) 0%, transparent 60%),
+    var(--background);
+}
+.hero-ribbon-wave {
+  position: absolute;
+  right: -8rem;
+  bottom: -10rem;
+  width: 28rem;
+  height: 28rem;
+  border-radius: 46% 54% 38% 62% / 52% 40% 60% 48%;
+  background: color-mix(in oklab, var(--brand-teal) 10%, transparent);
+  z-index: 0;
+}
+.hero-ribbon-media {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 21rem;
+}
+.hero-ribbon-circle {
+  position: relative;
+  overflow: hidden;
+  width: min(19rem, 72vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 6px solid var(--card);
+  box-shadow: 0 26px 60px -34px rgb(0 0 0 / 0.55);
+}
+.hero-ribbon-orbit {
+  position: absolute;
+  width: min(23rem, 86vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px dashed color-mix(in oklab, var(--brand-coral) 40%, transparent);
+  animation: hero-ribbon-spin 26s linear infinite;
+}
+@keyframes hero-ribbon-spin {
+  to { transform: rotate(360deg); }
+}
+.hero-ribbon-stat {
+  position: absolute;
+  bottom: 0.4rem;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--brand-teal) 20%, transparent);
+  background: var(--card);
+  padding: 0.5rem 0.9rem;
+  box-shadow: 0 14px 30px -20px rgb(0 0 0 / 0.5);
+  animation: page-slider-fade-up 500ms ease both;
+}
+.hero-ribbon-controls {
+  position: absolute;
+  right: 0;
+  bottom: 0.4rem;
+}
+
+/* ---- Variant: ribbonAlt (About) — same family, mirrored + squircle frame ---- */
+.hero-ribbon-alt {
+  background:
+    linear-gradient(240deg, color-mix(in oklab, var(--surface-mint, var(--secondary)) 60%, transparent) 0%, transparent 62%),
+    var(--background);
+}
+.hero-ribbon-alt .hero-ribbon-wave {
+  right: auto;
+  left: -9rem;
+  top: -9rem;
+  bottom: auto;
+  width: 26rem;
+  height: 26rem;
+  border-radius: 58% 42% 55% 45% / 45% 58% 42% 55%;
+  background: color-mix(in oklab, var(--brand-coral) 9%, transparent);
+}
+.hero-ribbon-alt .hero-ribbon-circle {
+  width: min(20rem, 76vw);
+  border-radius: 30% 30% 30% 30% / 30% 30% 30% 30%;
+  border-width: 5px;
+  transform: rotate(-3deg);
+}
+.hero-ribbon-alt .hero-ribbon-orbit {
+  width: min(22.5rem, 88vw);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 32%;
+  border-color: color-mix(in oklab, var(--brand-teal) 32%, transparent);
+  animation-duration: 40s;
+}
+.hero-ribbon-alt .hero-ribbon-stat {
+  left: auto;
+  right: 0;
+  bottom: 0.2rem;
+  border-radius: 0.8rem;
+}
+.hero-ribbon-alt .hero-ribbon-controls {
+  right: auto;
+  left: 0;
+  bottom: 0.2rem;
+}
+
+@media (max-width: 1023px) {
+  .hero-showcase-media { max-width: 19rem; }
+  .hero-showcase-arch { aspect-ratio: 4 / 4.2; border-radius: 8.5rem 8.5rem 1.1rem 1.1rem; }
+  .hero-ribbon-controls { position: static; margin-top: 1.5rem; justify-content: center; }
+  .hero-ribbon-stat { position: static; margin-top: 1rem; }
+  .hero-ribbon-media { gap: 0.5rem; }
+}
+
+@media (max-width: 640px) {
+  .hero-spotlight-band { aspect-ratio: 16 / 11; border-radius: 1rem; }
+  .hero-stack-deck { aspect-ratio: 4 / 3.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-ribbon-orbit { animation: none; }
+  .hero-stack-card { transition: none; }
+  .hero-spotlight-stat,
+  .hero-showcase-stat,
+  .hero-ribbon-stat { animation: none; }
 }
 
 /* ---- Apply page: eligibility section ---- */
@@ -1547,9 +1876,36 @@
   top: 1.25rem;
   color: color-mix(in oklab, var(--brand-teal) 18%, transparent);
   font-family: var(--font-display);
-  font-size: 3.25rem;
+  font-size: 2.25rem;
   font-weight: 800;
   line-height: 1;
+}
+
+/* ---- Services page cards: image header above the card body ---- */
+.service-card-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-soft);
+}
+.service-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+.expertise-card:hover .service-card-media img {
+  transform: scale(1.05);
+}
+.service-card-body {
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card-media img { transition: none; }
+  .expertise-card:hover .service-card-media img { transform: none; }
 }
 
 .partner-google {
@@ -1562,7 +1918,7 @@
   color: oklch(0.24 0.02 265);
 }
 .partner-sentry {
-  color: oklch(0.44 0.16 321);
+  color: oklch(0.5 0.13 235);
 }
 .partner-freshworks {
   color: oklch(0.66 0.19 164);
@@ -1577,7 +1933,7 @@
   color: oklch(0.55 0.22 259);
 }
 .partner-udemy {
-  color: oklch(0.55 0.2 315);
+  color: oklch(0.55 0.15 240);
 }
 .partner-paytm {
   color: oklch(0.62 0.18 225);
@@ -1885,14 +2241,6 @@
   color: var(--brand-ink);
 }
 
-.founders-section::before {
-  content: "";
-  position: absolute;
-  inset: 0.85rem;
-  border: 1px solid color-mix(in oklab, var(--brand-teal) 18%, transparent);
-  pointer-events: none;
-}
-
 .founders-watermark {
   position: absolute;
   top: 0.5rem;
@@ -2066,32 +2414,24 @@
   margin-top: 0.28rem;
   color: var(--brand-ink);
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.1;
 }
 
 .founder-position {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--founder-accent, var(--brand-coral)) 14%, transparent);
-  padding: 0.3rem 0.65rem;
-  color: color-mix(in oklab, var(--founder-accent, var(--brand-coral)) 78%, var(--brand-ink) 22%);
-  font-size: 0.62rem;
-  font-weight: 800;
+  margin-top: 0.3rem;
+  background: none;
+  padding: 0;
+  color: #000;
+  font-size: 0.72rem;
+  font-weight: 700;
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-}
-
-.founder-position::before {
-  content: "";
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background: currentColor;
 }
 
 .founder-role {
@@ -2178,7 +2518,6 @@
 
 @media (max-width: 640px) {
   .founders-section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-  .founders-section::before { inset: 0.65rem; }
   .founders-watermark { top: 2rem; font-size: 22vw; }
   .founders-title { font-size: clamp(2.4rem, 13vw, 3.7rem); }
   .founders-intro { grid-template-columns: 2rem 1fr; }
@@ -2323,6 +2662,13 @@
 
 @utility brand-spectrum-warm {
   background: linear-gradient(135deg, var(--brand-violet), var(--brand-coral) 55%, var(--brand-blue));
+}
+
+@utility brand-spectrum-text {
+  background: linear-gradient(135deg, var(--brand-violet), var(--brand-blue) 52%, var(--brand-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .project-room-watermark {

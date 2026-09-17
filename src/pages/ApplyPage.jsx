@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { ArrowRight, Award, BadgeCheck, BarChart3, Blocks, BrainCircuit, Calendar, Check, Cloud, Code2, Cpu, Database, GraduationCap, LineChart, Mail, Palette, PenTool, Rocket, Server, Sparkles, Terminal, UserCheck, Wand2, Workflow } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Header, Footer } from "@/components/layout";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
+import { applyToInternship, getCurrentUser } from "@/lib/auth";
 import workflowConsultation from "@/assets/workflow-consultation.jpg";
 import workflowDevelopment from "@/assets/workflow-development.jpg";
 import heroTeamCutout from "@/assets/hero-team-cutout.png";
@@ -229,6 +231,21 @@ const internshipTracks = [{
 const eligibility = ["Currently a student, recent graduate, or self-taught and motivated to learn", "Comfortable committing a few focused hours per week to your project", "Basic familiarity with your chosen track is helpful, but not required", "A laptop and a stable internet connection to join mentor sessions", "Willingness to take and act on code review feedback", "English proficiency sufficient for written and video mentor sessions"];
 
 export default function ApplyPage() {
+  const navigate = useNavigate();
+  const [appliedPrograms, setAppliedPrograms] = useState(() => new Set((getCurrentUser()?.applications ?? []).map(item => item.program)));
+
+  function handleApply(track, program) {
+    const current = getCurrentUser();
+    if (!current) {
+      navigate("/login", { state: { redirectTo: "/apply" } });
+      return;
+    }
+    const result = applyToInternship({ track: track.title, program: program.title });
+    if (result.ok) {
+      setAppliedPrograms(previous => new Set(previous).add(program.title));
+    }
+  }
+
   return <div className="min-h-screen overflow-x-clip bg-background">
       <Header />
       <main>
@@ -237,7 +254,7 @@ export default function ApplyPage() {
                 Start your application <ArrowRight />
               </a>
             </Button>} secondaryCta={<Button asChild variant="brandOutline" size="xl">
-              <Link to="/career-fields">Browse career fields</Link>
+              <Link to="/courses">Browse courses</Link>
             </Button>} />
 
         <section className="services-section px-5 py-14 lg:px-8 lg:py-16">
@@ -275,7 +292,7 @@ export default function ApplyPage() {
                           </li>)}
                       </ul>
                       <Button asChild variant="brandOutline" size="sm" className="apply-track-cta">
-                        <Link to="/career-fields">{track.ctaLabel}</Link>
+                        <Link to="/courses">{track.ctaLabel}</Link>
                       </Button>
                     </div>
 
@@ -305,9 +322,11 @@ export default function ApplyPage() {
                                     <Check aria-hidden="true" /> {item}
                                   </li>)}
                               </ul>}
-                            <Button asChild variant="brand" size="sm" className="program-card-cta">
-                              <a href="mailto:careers@swiftlabtechnologies.com">Apply Now</a>
-                            </Button>
+                            {appliedPrograms.has(title) ? <Button variant="brandOutline" size="sm" className="program-card-cta" disabled>
+                                <Check /> Applied
+                              </Button> : <Button type="button" variant="brand" size="sm" className="program-card-cta" onClick={() => handleApply(track, { title })}>
+                                Apply Now
+                              </Button>}
                           </div>
                         </div>)}
                     </div>

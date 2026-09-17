@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowRight, BadgeCheck, BrainCircuit, CheckCircle2, Clock3, Cloud, Code2, Database, FileText, GraduationCap, Layers, Palette, ShieldCheck, Sparkles, Star, Users, Zap } from "lucide-react";
+import { ArrowRight, BadgeCheck, BrainCircuit, CheckCircle2, Clock3, Cloud, Code2, Database, FileText, GraduationCap, Layers, Palette, ShieldCheck, Sparkles, Star, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Header, Footer } from "@/components/layout";
 import { PageHero } from "@/components/PageHero";
@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import heroTeamCutout from "@/assets/hero-team-cutout.png";
 import workflowPlanning from "@/assets/workflow-planning.jpg";
 import workflowDeployment from "@/assets/workflow-deployment.jpg";
+import storySamina from "@/assets/partner-samra.jpg";
+import storyZaheer from "@/assets/partner-arslan.jpg";
+import storyHina from "@/assets/partner-ayesha.jpg";
 
 const heroSlides = [{
   title: "Premium courses.",
@@ -65,11 +68,11 @@ const courses = [{
   level: "Beginner to Advanced",
   text: "Master modern web development with the MERN stack. Build production-ready full-stack applications from scratch.",
   duration: "16 Weeks",
-  enrolled: "150+ enrolled",
+  enrolled: "420+ enrolled",
   rating: "4.9",
   bullets: ["Build complete web apps with React & Node.js", "Master MongoDB, Express.js, REST APIs & GraphQL", "Deploy on AWS, Vercel & Heroku"],
-  price: "9,999",
-  originalPrice: "11,999",
+  price: "7,999",
+  originalPrice: "9,999"
 }, {
   icon: Cloud,
   category: "Development",
@@ -78,12 +81,11 @@ const courses = [{
   level: "Intermediate to Advanced",
   text: "Provision real infrastructure and automate deployments. Master AWS, Docker, Kubernetes & CI/CD pipelines.",
   duration: "14 Weeks",
-  enrolled: "100+ enrolled",
+  enrolled: "180+ enrolled",
   rating: "4.8",
   bullets: ["AWS, Azure & GCP core services", "Containers with Docker & Kubernetes", "CI/CD pipelines with GitHub Actions"],
-  price: "10,999",
-  originalPrice: "12,999",
- 
+  price: "6,999",
+  originalPrice: "8,999"
 }, {
   icon: Database,
   category: "Data",
@@ -92,12 +94,11 @@ const courses = [{
   level: "Beginner to Intermediate",
   text: "Transform data into actionable insights. Master SQL, Python, Power BI, Excel & statistics for business decisions.",
   duration: "14 Weeks",
-  enrolled: "200+ enrolled",
+  enrolled: "240+ enrolled",
   rating: "4.7",
   bullets: ["SQL for data extraction & analysis", "Interactive dashboards with Power BI & Tableau", "Python: Pandas, NumPy, Matplotlib"],
-  price: "8,999",
-  originalPrice: "10,999",
-  
+  price: "5,999",
+  originalPrice: "7,999"
 }, {
   icon: Palette,
   category: "Design",
@@ -106,12 +107,11 @@ const courses = [{
   level: "Beginner to Advanced",
   text: "Design beautiful, user-centric products. Master Figma, user research, prototyping & design thinking principles.",
   duration: "12 Weeks",
-  enrolled: "300+ enrolled",
+  enrolled: "310+ enrolled",
   rating: "4.9",
   bullets: ["Master Figma, Adobe XD & Framer", "Conduct user research & usability testing", "Wireframes, prototypes & design systems"],
-  price: "6,999",
-  originalPrice: "8,999",
- 
+  price: "5,499",
+  originalPrice: "6,999"
 }, {
   icon: ShieldCheck,
   category: "Security",
@@ -120,12 +120,11 @@ const courses = [{
   level: "Intermediate to Advanced",
   text: "Become a certified ethical hacker. Learn penetration testing, vulnerability assessment & cyber defence.",
   duration: "16 Weeks",
-  enrolled: "180+ enrolled",
+  enrolled: "150+ enrolled",
   rating: "4.8",
   bullets: ["Hands-on penetration testing & vulnerability assessment", "OWASP Top 10 & web application security", "Network security, cryptography & secure coding"],
-  price: "9,999",
-  originalPrice: "11,999",
- 
+  price: "7,499",
+  originalPrice: "9,499"
 }, {
   icon: BrainCircuit,
   category: "AI / Data",
@@ -134,42 +133,40 @@ const courses = [{
   level: "Intermediate to Advanced",
   text: "Master AI/ML with Python, Deep Learning & Neural Networks. Deploy intelligent applications that solve real problems.",
   duration: "20 Weeks",
-  enrolled: "450+ enrolled",
+  enrolled: "380+ enrolled",
   rating: "4.9",
   bullets: ["Python, ML algorithms & deep learning mastery", "TensorFlow & PyTorch for predictive models", "Computer Vision, NLP & Generative AI"],
-  price: "10,999",
-  originalPrice: "12,999",
-  
+  price: "8,999",
+  originalPrice: "9,999"
 }];
 
-
 const successStories = [{
-  initials: "SR",
+  avatar: storySamina,
   name: "Samina Raza",
   role: "UI/UX Designer @ Northbridge Labs",
   location: "Lahore",
   course: "UI/UX & Product Design",
-  package: "PKR 130K+/month",
+  package: "PKR 5,499",
   quote: "From a commerce graduate to a UI/UX designer at a product studio — the portfolio I built here got me the interview and the offer."
 }, {
-  initials: "ZA",
-  name: "Zaheer Ahmed",
+  avatar: storyZaheer,
+  name: "Zaheer Ahmad",
   role: "Security Analyst @ Cyberun Systems",
   location: "Karachi",
   course: "Cyber Security & Ethical Hacking",
-  package: "PKR 145K+/month",
+  package: "PKR 7,499",
   quote: "The ethical hacking labs were the real deal. I passed my CEH on the first attempt — Swift Lab's prep was thorough and hands-on."
 }, {
-  initials: "HT",
+  avatar: storyHina,
   name: "Hina Tariq",
   role: "Full Stack Developer @ Brightwave Tech",
   location: "Islamabad",
   course: "Full Stack Web Development",
-  package: "PKR 150K+/month",
+  package: "PKR 7,999",
   quote: "Shipping a real MERN app during the course made the interviews easy. I was building production features from day one."
 }];
 
-export default function CareerFieldsPage() {
+export default function CoursesPage() {
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filteredCourses = useMemo(() => activeCategory === "All" ? courses : courses.filter(course => course.category === activeCategory), [activeCategory]);
@@ -195,7 +192,6 @@ export default function CareerFieldsPage() {
               <p className="mt-5 leading-7 text-muted-foreground">
                 Every course includes live projects, mentorship &amp; industry certification.
               </p>
-             
             </div>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
@@ -220,8 +216,7 @@ export default function CareerFieldsPage() {
               rating,
               bullets,
               price,
-              originalPrice,
-              discount
+              originalPrice
             }) => <article key={title} className="group relative flex flex-col rounded-xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-brand-lg">
                   {badge && <span className="absolute -top-3 right-5 inline-flex items-center gap-1 rounded-full bg-brand-gold px-3 py-1 text-[0.65rem] font-extrabold uppercase tracking-wide text-brand-ink shadow-soft">
                       <Star className="size-3 fill-current" aria-hidden="true" /> {badge}
@@ -268,7 +263,6 @@ export default function CareerFieldsPage() {
                         <span className="font-display text-2xl font-extrabold text-brand-ink">PKR {price}</span>
                         <span className="text-sm font-semibold text-muted-foreground line-through">PKR {originalPrice}</span>
                       </div>
-                      <span className="text-xs font-extrabold text-primary">{discount}</span>
                     </div>
                   </div>
 
@@ -277,14 +271,13 @@ export default function CareerFieldsPage() {
                       <Link to="/apply">Apply Now</Link>
                     </Button>
                     <Button asChild variant="brandOutline" size="sm">
-                      <Link to="/apply" title="Online payments coming soon — enrol via our free form">Buy Now</Link>
+                      <Link to="/apply">Buy Now</Link>
                     </Button>
                   </div>
                 </article>)}
             </div>
           </div>
         </section>
-
 
         <section className="px-5 py-14 lg:px-8 lg:py-16">
           <div className="mx-auto max-w-6xl">
@@ -300,7 +293,7 @@ export default function CareerFieldsPage() {
 
             <div className="mt-12 grid gap-6 lg:grid-cols-3">
               {successStories.map(({
-              initials,
+              avatar,
               name,
               role,
               location,
@@ -310,9 +303,7 @@ export default function CareerFieldsPage() {
             }) => <article key={name} className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-soft">
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <span className="grid size-11 shrink-0 place-items-center rounded-full bg-primary font-display text-sm font-extrabold text-primary-foreground">
-                        {initials}
-                      </span>
+                      <img src={avatar} alt={name} loading="lazy" className="size-11 shrink-0 rounded-full object-cover" />
                       <div>
                         <p className="font-bold leading-tight text-brand-ink">{name}</p>
                         <p className="text-xs font-semibold leading-tight text-muted-foreground">{role}</p>

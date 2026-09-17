@@ -56,7 +56,7 @@ const faqs = [{
   question: "What happens after I submit my application?",
   answer: "You'll hear back within 5–7 days for a short mentor conversation, then be matched to a track and a live project. See the How It Works page for the full breakdown of every stage."
 }, {
-  question: "Can I switch career fields after starting?",
+  question: "Can I switch courses after starting?",
   answer: "It's easiest to confirm your track before starting so your mentor can plan your roadmap, but talk to your mentor early if you feel a different field is a better fit — we'd rather you finish in the right track."
 }];
 

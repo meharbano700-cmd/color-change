@@ -1,7 +1,7 @@
-import { ArrowRight, BadgeCheck, BrainCircuit, Bug, CloudCog, Check, ClipboardCheck, Code2, GraduationCap, Headphones, Layers3, ListChecks, MonitorCog, Play, Rocket, Smartphone, Sparkles, Users } from "lucide-react";
+import { ArrowRight, BadgeCheck, Bug, CloudCog, ClipboardCheck, Code2, GraduationCap, Headphones, Layers3, ListChecks, MonitorCog, Play, Rocket, Smartphone, Sparkles, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FaLinkedin } from "react-icons/fa6";
-import { SiCoursera, SiFresh, SiGithub, SiGooglecloud, SiCisco, SiPaytm, SiSentry, SiSupabase, SiUdemy, SiZoho, SiReact, SiTensorflow, SiOpencv, SiPython, SiPostgresql } from "react-icons/si";
+import { SiCoursera, SiFresh, SiGithub, SiGooglecloud, SiCisco, SiPaytm, SiSentry, SiSupabase, SiUdemy, SiZoho, SiReact, SiTensorflow, SiOpencv } from "react-icons/si";
 import heroTeamCutout from "@/assets/hero-team-cutout.png";
 import partnerAyesha from "@/assets/partner-ayesha-pink.jpg";
 import partnerArslan from "@/assets/partner-arslan.jpg";
@@ -80,21 +80,6 @@ const services = [{
   title: "Artificial Intelligence",
   text: "Go deeper into applied AI — computer vision, NLP, and intelligent automation — through guided, project-based internship sprints.",
   tags: ["Computer Vision", "NLP", "Automation", "Research", "Prompt Engineering", "AI Agents"]
-}, {
-  icon: SiPython,
-  title: "Python Programming",
-  text: "Sharpen your Python fundamentals and take them into production — scripting, automation, backend services, and clean, tested code.",
-  tags: ["Python", "Automation", "Backend", "Clean Code", "Testing", "REST APIs"]
-}, {
-  icon: BrainCircuit,
-  title: "Machine Learning",
-  text: "Learn the full ML lifecycle hands-on — data prep, feature engineering, model evaluation — under mentors who ship models for a living.",
-  tags: ["Data Prep", "Feature Eng.", "Evaluation", "Mentorship", "Neural Nets", "Tuning"]
-}, {
-  icon: SiPostgresql,
-  title: "Data & Analytics",
-  text: "Turn raw data into real decisions — build pipelines, dashboards, and analytics workflows as part of a live internship project.",
-  tags: ["Data Engineering", "Dashboards", "BI", "SQL", "ETL Pipelines", "Data Visualization"]
 }];
 const workflowSteps = [{
   icon: ClipboardCheck,
@@ -123,23 +108,20 @@ const workflowSteps = [{
   image: workflowDeployment
 }];
 const foundingPartners = [{
-  name: "Ayesha",
-  position: "Co-Founder and CTO",
-  role: "UI/UX Designer",
-  image: partnerAyesha,
-  linkedin: "https://www.linkedin.com/in/ayesha/"
-}, {
-  name: "Arslan",
-  position: "Founder and CEO",
-  role: "Social Media Marketer",
+  name: "Arslan Fayyaz",
+  position: "Founder | CEO",
   image: partnerArslan,
   linkedin: "https://www.linkedin.com/in/arslan/"
 }, {
-  name: "Samra",
-  position: "Co-Founder and CTO",
-  role: "Full Stack Web Developer",
+  name: "Samra Amir",
+  position: "Co - Founder | CTO",
   image: partnerSamra,
   linkedin: "https://www.linkedin.com/in/samra/"
+}, {
+  name: "Ayesha Nazar",
+  position: "VP Engineering",
+  image: partnerAyesha,
+  linkedin: "https://www.linkedin.com/in/ayesha/"
 }];
 const journeySteps = [{
   icon: Sparkles,
@@ -204,7 +186,7 @@ function JourneyShowcase() {
             <h3>{activeJourney.title}</h3>
             <p>{activeJourney.text}</p>
             {activeStep === journeySteps.length - 1 && <Button asChild variant="brand" size="lg">
-                <Link to="/career-fields">
+                <Link to="/courses">
                   View past projects <ArrowRight />
                 </Link>
               </Button>}
@@ -246,7 +228,7 @@ export default function HomePage() {
                 <Sparkles className="size-4" aria-hidden="true" /> World-Class Internship Ecosystem
               </div>
               <h1 className="text-balance text-4xl font-extrabold leading-[1.12] text-brand-ink sm:text-5xl lg:text-[3.4rem]">
-                International Internships Designed for <span className="text-primary">Practical Mastery,</span>
+                Global Internships Designed for <span className="text-primary">Practical Mastery,</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
                 Empowering students and developers globally through hands-on project execution,
@@ -264,14 +246,6 @@ export default function HomePage() {
                   </Link>
                 </Button>
               </div>
-              <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-foreground/80">
-                {["Industry mentors", "Real-world projects", "Career support"].map(item => <span key={item} className="flex items-center gap-2">
-                    <span className="grid size-5 place-items-center rounded-full bg-secondary text-primary">
-                      <Check className="size-3" />
-                    </span>
-                    {item}
-                  </span>)}
-              </div>
             </div>
             <div className="hero-blueprint relative mx-auto w-full max-w-2xl overflow-hidden border border-primary/20 p-5 sm:p-8 lg:justify-self-end">
               <div className="hero-photo-frame relative mx-auto mt-9 w-[88%] sm:w-[84%]">
@@ -287,7 +261,7 @@ export default function HomePage() {
                   <GraduationCap />
                 </span>
                 <span>
-                  <strong className="block font-display text-lg text-brand-ink">1,200+</strong>
+                  <strong className="block font-display text-lg text-brand-ink">200+</strong>
                   <span className="text-xs font-semibold text-muted-foreground">
                     students mentored
                   </span>
@@ -312,9 +286,9 @@ export default function HomePage() {
           <div id="career-fields" className="relative mx-auto max-w-7xl">
             <div className="career-gallery-heading mx-auto max-w-4xl text-center">
               <p className="career-gallery-kicker">Internships available</p>
-              <h2>Choose your track. Build real proof.</h2>
+              <h2>Choose your track. Build real proof</h2>
               <p className="career-gallery-lead">
-                Three focused internship tracks, each built around live projects, expert
+                Six focused internship tracks, each built around live projects, expert
                 mentors and outcomes recruiters actually recognize.
               </p>
             </div>
@@ -331,6 +305,18 @@ export default function HomePage() {
               image: "https://images.unsplash.com/photo-1629752187687-3d3c7ea3a21b?auto=format&fit=crop&w=800&q=85",
               title: "UI/UX Design",
               text: "Design polished, user-centered interfaces backed by real research, wireframing and usability testing."
+            }, {
+              image: "https://images.unsplash.com/photo-1760548425425-e42e77fa38f1?auto=format&fit=crop&w=800&q=85",
+              title: "Front End Development",
+              text: "Craft fast, responsive interfaces with React under mentors who ship pixel-perfect, production-ready UI every day."
+            }, {
+              image: "https://images.unsplash.com/photo-1644088379091-d574269d422f?auto=format&fit=crop&w=800&q=85",
+              title: "Machine Learning",
+              text: "Train, evaluate and deploy real ML models — from data prep to production — guided by mentors who ship models for a living."
+            }, {
+              image: "https://images.unsplash.com/photo-1762330465857-07e4c81c0dfa?auto=format&fit=crop&w=800&q=85",
+              title: "Prompt Engineering",
+              text: "Master the craft of designing, testing and refining prompts to get reliable, production-grade results from real AI systems."
             }].map(({
               image,
               title,
@@ -411,9 +397,9 @@ export default function HomePage() {
             </div>
             <div className="mt-12 flex justify-center">
               <Button asChild variant="brand" size="xl">
-                <a href="#internships">
+                <Link to="/apply">
                   Explore More Internships <ArrowRight />
-                </a>
+                </Link>
               </Button>
             </div>
           </div>
@@ -468,7 +454,6 @@ export default function HomePage() {
         <JourneyShowcase />
 
         <section id="founding-partners" className="founders-section relative overflow-hidden px-5 py-14 lg:px-8 lg:py-16">
-          <div className="founders-watermark" aria-hidden="true">PARTNERSHIP</div>
           <div className="relative mx-auto max-w-7xl">
             <div className="founders-heading-grid">
               <p className="founders-kicker">Our Core Partnership</p>
@@ -479,16 +464,15 @@ export default function HomePage() {
               {foundingPartners.map(partner => <article key={partner.name} className="founder-profile group">
                   <div className="founder-portrait-wrap">
                     <div className="founder-portrait">
-                      <img src={partner.image} width={640} height={800} loading="lazy" alt={`${partner.name}, ${partner.role} at Swift Lab Technologies`} />
+                      <img src={partner.image} width={640} height={800} loading="lazy" alt={`${partner.name}, ${partner.position} at Swift Lab Technologies`} />
                     </div>
                     <span className="founder-corner founder-corner-top" aria-hidden="true" />
                     <span className="founder-corner founder-corner-bottom" aria-hidden="true" />
                   </div>
                   <div className="founder-details">
                     <div>
-                      <p className="founder-position">{partner.position}</p>
                       <h3>{partner.name}</h3>
-                      <p className="founder-role">{partner.role}</p>
+                      <p className="founder-position">{partner.position}</p>
                     </div>
                     <a href={partner.linkedin} target="_blank" rel="noreferrer" className="founder-linkedin founder-linkedin-real" aria-label={`Open ${partner.name}'s LinkedIn profile`} title={`${partner.name} on LinkedIn`}>
                       <FaLinkedin aria-hidden="true" />

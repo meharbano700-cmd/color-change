@@ -81,7 +81,7 @@ export default function HowItWorksPage() {
                 Apply Now <ArrowRight />
               </Link>
             </Button>} secondaryCta={<Button asChild variant="brandOutline" size="xl">
-              <Link to="/career-fields">Explore career fields</Link>
+              <Link to="/courses">Explore courses</Link>
             </Button>} />
 
         <section className="border-b border-border px-5 py-14 lg:px-8 lg:py-16">

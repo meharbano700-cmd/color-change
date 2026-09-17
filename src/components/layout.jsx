@@ -1,10 +1,19 @@
-import { ArrowRight, BriefcaseBusiness, ChevronDown, Menu, MessageCircleQuestion, Play, Rocket, Target, X } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { ArrowRight, Bell, BriefcaseBusiness, ChevronDown, LifeBuoy, LogOut, Menu, MessageCircleQuestion, Play, Rocket, UserRound, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
+import { getCurrentUser, logoutUser } from "@/lib/auth";
 
-export const navItems = ["Home", "Internships", "Services", "Courses", "Career", "Contact Us", "About Us"];
+export const navItems = ["Home", "Internships", "Services", "Courses", "Contact Us", "About Us"];
+
+export const navRoutes = {
+  Home: "/",
+  Services: "/services",
+  Courses: "/courses",
+  "Contact Us": "/contact",
+  "About Us": "/about"
+};
 
 export const internshipLinks = [{
   label: "Apply for Internship",
@@ -14,10 +23,6 @@ export const internshipLinks = [{
   label: "How It Works",
   href: "/how-it-works",
   icon: Play
-}, {
-  label: "Career Fields",
-  href: "/career-fields",
-  icon: Target
 }, {
   label: "FAQs",
   href: "/faq",
@@ -55,9 +60,10 @@ export function Brand() {
         <Rocket className="size-5" aria-hidden="true" />
         <span className="absolute -bottom-2 -right-2 size-5 rounded-full bg-brand-gold" />
       </span>
-      <span className="leading-none">
-        <span className="block font-display text-[1.04rem] font-extrabold text-brand-ink">
-          SWIFT LAB
+      <span className="leading-none relative top-1.5">
+        <span className="block font-display text-[1.04rem] font-extrabold">
+          <span className="text-brand-ink">SWIFT </span>
+          <span className="brand-spectrum-text">LAB</span>
         </span>
         <span className="mt-1 block text-[0.58rem] font-bold uppercase tracking-[0.18em] text-muted-foreground">
           Technologies
@@ -67,45 +73,102 @@ export function Brand() {
 }
 
 function navHref(item) {
-  return item === "Home" ? "/" : `/#${item.toLowerCase().replaceAll(" ", "-")}`;
+  return navRoutes[item] ?? `/#${item.toLowerCase().replaceAll(" ", "-")}`;
+}
+
+function isNavItemActive(item, pathname) {
+  if (item === "Internships") {
+    return internshipLinks.some(link => link.href === pathname);
+  }
+  return navHref(item) === pathname;
 }
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [session, setSession] = useState(null);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    setSession(getCurrentUser());
+  }, []);
+
+  const sessionInitials = String(session?.fullName || session?.email || "").trim().split(/\s+/).slice(0, 2).map(part => part[0]?.toUpperCase()).join("") || "SL";
+
+  function handleLogout() {
+    logoutUser();
+    setSession(null);
+    navigate("/login");
+  }
+
   return <header className="sticky top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-xl">
       <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-5 lg:px-8">
         <Brand />
         <nav className="hidden items-center gap-1 xl:flex" aria-label="Main navigation">
-          {navItems.map(item => item === "Internships" ? <div className="group relative" key={item}>
-                <a href="/#internships" className="flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold text-foreground/80 transition-colors hover:bg-accent hover:text-primary">
+          {navItems.map(item => {
+            const active = isNavItemActive(item, location.pathname);
+            const linkClass = `relative flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold transition-colors hover:bg-accent hover:text-primary after:absolute after:bottom-0.5 after:left-3 after:right-3 after:h-[2px] after:rounded-full after:bg-primary after:transition-opacity after:content-[''] ${active ? "text-primary after:opacity-100" : "text-foreground/80 after:opacity-0"}`;
+            return item === "Internships" ? <div className="group relative" key={item}>
+                <button type="button" className={linkClass}>
                   {item}
                   <ChevronDown className="size-3.5 transition-transform group-hover:rotate-180" aria-hidden="true" />
-                </a>
+                </button>
                 <div className="invisible absolute left-1/2 top-full w-60 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   <div className="rounded-md border border-border bg-card p-2 shadow-soft">
                     {internshipLinks.map(({
                 label,
                 href,
                 icon: Icon
-              }) => <Link key={label} to={href} className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-foreground/80 transition-colors hover:bg-accent hover:text-primary">
+              }) => <Link key={label} to={href} className={`flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:text-primary ${location.pathname === href ? "text-primary" : "text-foreground/80"}`}>
                         <Icon className="size-4" aria-hidden="true" />
                         {label}
                       </Link>)}
                   </div>
                 </div>
-              </div> : <a key={item} href={navHref(item)} className="rounded-md px-3 py-2 text-sm font-semibold text-foreground/80 transition-colors hover:bg-accent hover:text-primary">
+              </div> : <Link key={item} to={navHref(item)} className={linkClass}>
                 {item}
-              </a>)}
+              </Link>;
+          })}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
-          <Button asChild variant="ghost">
-            <a href="#login">Log in</a>
-          </Button>
-          <Button asChild variant="brand">
-            <a href="#register">
-              Register <ArrowRight />
-            </a>
-          </Button>
+          {session ? <div className="group relative">
+              <button type="button" className="flex items-center gap-2 rounded-md border border-border bg-card px-2.5 py-1.5 text-sm font-semibold text-foreground/80 transition-colors hover:border-primary/40 hover:text-primary" aria-haspopup="menu">
+                <span className="grid size-7 place-items-center rounded-full brand-spectrum text-[0.7rem] font-extrabold text-primary-foreground">
+                  {sessionInitials}
+                </span>
+                Profile
+                <ChevronDown className="size-3.5 transition-transform group-hover:rotate-180" aria-hidden="true" />
+              </button>
+              <div className="invisible absolute right-0 top-full w-56 translate-y-2 pt-3 opacity-0 transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="rounded-md border border-border bg-card p-2 shadow-soft" role="menu">
+                  <div className="border-b border-border px-3 pb-2.5 pt-1.5">
+                    <strong className="block truncate text-sm font-bold text-brand-ink">{session.fullName || "Your account"}</strong>
+                    <span className="block truncate text-xs text-muted-foreground">{session.email}</span>
+                  </div>
+                  {[[UserRound, "Profile", "/profile"], [Bell, "Notifications", "/profile?tab=notifications"], [LifeBuoy, "Support", "/profile?tab=support"]].map(([Icon, label, href]) => {
+                    const MenuIcon = Icon;
+                    return <Link key={label} to={href} role="menuitem" className="mt-1 flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-foreground/80 transition-colors hover:bg-accent hover:text-primary">
+                        <MenuIcon className="size-4" aria-hidden="true" />
+                        {label}
+                      </Link>;
+                  })}
+                  <button type="button" role="menuitem" onClick={handleLogout} className="mt-1 flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-brand-coral transition-colors hover:bg-surface-coral">
+                    <LogOut className="size-4" aria-hidden="true" />
+                    Log out
+                  </button>
+                </div>
+              </div>
+            </div> : <>
+              <Button asChild variant="ghost">
+                <Link to="/login">Log in</Link>
+              </Button>
+              <Button asChild variant="brand">
+                <Link to="/register">
+                  Register <ArrowRight />
+                </Link>
+              </Button>
+            </>}
         </div>
         <Button variant="ghost" size="icon" className="xl:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(open => !open)}>
           {menuOpen ? <X /> : <Menu />}
@@ -113,28 +176,46 @@ export function Header() {
       </div>
       {menuOpen && <nav className="border-t border-border bg-background px-5 py-5 xl:hidden" aria-label="Mobile navigation">
           <div className="mx-auto grid max-w-7xl gap-1">
-            {navItems.map(item => item === "Internships" ? <div key={item} className="rounded-md bg-surface-mint/60 p-2">
-                  <a onClick={() => setMenuOpen(false)} href="/#internships" className="block rounded-md px-2 py-2 text-sm font-bold text-primary">
+            {navItems.map(item => {
+              const active = isNavItemActive(item, location.pathname);
+              return item === "Internships" ? <div key={item} className="rounded-md bg-surface-mint/60 p-2">
+                  <span className={`relative inline-block rounded-md px-2 py-2 text-sm font-bold text-primary after:absolute after:bottom-0 after:left-2 after:right-2 after:h-[2px] after:rounded-full after:bg-primary after:transition-opacity after:content-[''] ${active ? "after:opacity-100" : "after:opacity-0"}`}>
                     Internships
-                  </a>
+                  </span>
                   <div className="grid grid-cols-2 gap-1 border-t border-primary/10 pt-2">
                     {internshipLinks.map(({
                 label,
                 href
-              }) => <Link key={label} onClick={() => setMenuOpen(false)} to={href} className="rounded-md px-2 py-2 text-xs font-semibold text-foreground/75 hover:bg-background hover:text-primary">
+              }) => <Link key={label} onClick={() => setMenuOpen(false)} to={href} className={`rounded-md px-2 py-2 text-xs font-semibold hover:bg-background hover:text-primary ${location.pathname === href ? "text-primary" : "text-foreground/75"}`}>
                         {label}
                       </Link>)}
                   </div>
-                </div> : <a key={item} onClick={() => setMenuOpen(false)} href={navHref(item)} className="rounded-md px-3 py-2.5 text-sm font-semibold hover:bg-accent">
+                </div> : <Link key={item} onClick={() => setMenuOpen(false)} to={navHref(item)} className={`relative inline-block rounded-md px-3 py-2.5 text-sm font-semibold hover:bg-accent after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:rounded-full after:bg-primary after:transition-opacity after:content-[''] ${active ? "text-primary after:opacity-100" : "after:opacity-0"}`}>
                   {item}
-                </a>)}
+                </Link>;
+            })}
             <div className="mt-3 grid grid-cols-2 gap-2 border-t border-border pt-4">
-              <Button asChild variant="brandOutline">
-                <a href="#login">Log in</a>
-              </Button>
-              <Button asChild variant="brand">
-                <a href="#register">Register</a>
-              </Button>
+              {session ? <>
+                  <Button asChild variant="brandOutline">
+                    <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                  </Button>
+                  <Button asChild variant="brandOutline">
+                    <Link to="/profile?tab=notifications" onClick={() => setMenuOpen(false)}>Notifications</Link>
+                  </Button>
+                  <Button asChild variant="brandOutline">
+                    <Link to="/profile?tab=support" onClick={() => setMenuOpen(false)}>Support</Link>
+                  </Button>
+                  <Button type="button" variant="brand" onClick={() => { setMenuOpen(false); handleLogout(); }}>
+                    Log out
+                  </Button>
+                </> : <>
+                  <Button asChild variant="brandOutline">
+                    <Link to="/login" onClick={() => setMenuOpen(false)}>Log in</Link>
+                  </Button>
+                  <Button asChild variant="brand">
+                    <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+                  </Button>
+                </>}
             </div>
           </div>
         </nav>}
@@ -145,7 +226,21 @@ export function Footer() {
   return <footer id="about-us" className="site-footer border-t border-border bg-brand-ink text-primary-foreground">
       <div className="footer-main mx-auto grid max-w-[1440px] border-b border-primary-foreground/15">
         <div className="footer-brand">
-          <Brand />
+          <Link to="/" className="flex items-center gap-2.5" aria-label="Swift Lab Technologies home">
+            <span className="brand-spectrum relative grid size-10 place-items-center overflow-hidden rounded-md text-primary-foreground shadow-brand">
+              <Rocket className="size-5" aria-hidden="true" />
+              <span className="absolute -bottom-2 -right-2 size-5 rounded-full bg-brand-gold" />
+            </span>
+            <span className="leading-none">
+              <span className="block font-display text-[1.04rem] font-extrabold">
+                <span className="text-white">SWIFT </span>
+                <span className="brand-spectrum-text">LAB</span>
+              </span>
+              <span className="mt-1 block text-[0.58rem] font-bold uppercase tracking-[0.18em] text-white">
+                Technologies
+              </span>
+            </span>
+          </Link>
           <p className="mt-6 max-w-md text-sm leading-7 text-primary-foreground/65">
             Building the next generation of technology talent through practical learning,
             meaningful projects and thoughtful mentorship.
@@ -165,17 +260,17 @@ export function Footer() {
             <div className="footer-link-list">
               <a href="/#home">Home</a>
               <a href="/#internships">Internships</a>
-              <a href="/#services">Services</a>
+              <Link to="/services">Services</Link>
               <Link to="/how-it-works">How it works</Link>
             </div>
           </div>
           <div>
             <h3 className="footer-heading">Company</h3>
             <div className="footer-link-list">
-              <a href="/#about-us">About us</a>
+              <Link to="/about">About us</Link>
               <a href="/#partners">Partners</a>
-              <Link to="/career-fields">Careers</Link>
-              <a href="mailto:careers@swiftlabtechnologies.com">Contact</a>
+              <Link to="/courses">Courses</Link>
+              <Link to="/contact">Contact</Link>
             </div>
           </div>
         </div>
@@ -192,8 +287,8 @@ export function Footer() {
       <div className="footer-bottom mx-auto flex max-w-[1440px] flex-col gap-3 text-xs text-primary-foreground/45 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 Swift Lab Technologies. All rights reserved.</p>
         <div className="flex gap-5">
-          <a href="#privacy">Privacy</a>
-          <a href="#terms">Terms</a>
+          <Link to="/privacy">Privacy</Link>
+          <Link to="/terms">Terms</Link>
         </div>
       </div>
     </footer>;
