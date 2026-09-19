@@ -4,12 +4,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node server.js",
     "build": "vite build",
+    "start": "node server.js",
     "preview": "vite preview",
     "lint": "eslint ."
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.8",

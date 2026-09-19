@@ -15,3 +15,5 @@ Build for production:
 npm run build
 npm run preview
 ```
+
+For the contact form (Gmail-based, via `server.js`), see `CONTACT-FORM-SETUP.md`.

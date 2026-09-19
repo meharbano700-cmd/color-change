@@ -15,5 +15,9 @@ export default defineConfig({
   },
   server: {
     port: 8080,
+    proxy: {
+      // Forwards contact-form calls to the Express server (npm run server)
+      "/api": "http://localhost:3000",
+    },
   },
 });
