@@ -43,8 +43,8 @@ const heroSlides = [{
 const contactMethods = [{
   icon: Mail,
   title: "Email us",
-  text: "careers@swiftlabtechnologies.com",
-  href: "mailto:careers@swiftlabtechnologies.com"
+  text: "swiftlabtechnologies@gmail.com",
+  href: "mailto:swiftlabtechnologies@gmail.com"
 }, {
   icon: Phone,
   title: "Call us",

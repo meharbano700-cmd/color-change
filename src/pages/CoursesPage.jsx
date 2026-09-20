@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { Header, Footer } from "@/components/layout";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
+import { BuyNowDialog } from "@/components/BuyNowDialog";
 import heroTeamCutout from "@/assets/hero-team-cutout.png";
 import workflowPlanning from "@/assets/workflow-planning.jpg";
 import workflowDeployment from "@/assets/workflow-deployment.jpg";
-import storySamina from "@/assets/partner-samra.jpg";
-import storyZaheer from "@/assets/partner-arslan.jpg";
-import storyHina from "@/assets/partner-ayesha.jpg";
+const storySamina = "https://randomuser.me/api/portraits/women/65.jpg";
+const storyZaheer = "https://randomuser.me/api/portraits/men/54.jpg";
+const storyHina = "https://randomuser.me/api/portraits/women/21.jpg";
 
 const heroSlides = [{
   title: "Premium courses.",
@@ -270,9 +271,7 @@ export default function CoursesPage() {
                     <Button asChild variant="brand" size="sm">
                       <Link to="/apply">Apply Now</Link>
                     </Button>
-                    <Button asChild variant="brandOutline" size="sm">
-                      <Link to="/apply">Buy Now</Link>
-                    </Button>
+                    <BuyNowDialog course={title} price={price} />
                   </div>
                 </article>)}
             </div>
@@ -303,7 +302,7 @@ export default function CoursesPage() {
             }) => <article key={name} className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-soft">
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <img src={avatar} alt={name} loading="lazy" className="size-11 shrink-0 rounded-full object-cover" />
+                      <img src={avatar} alt={name} loading="lazy" className="size-11 shrink-0 rounded-full object-cover" style={name === "Zaheer Ahmad" ? { objectPosition: "center 75%" } : undefined} />
                       <div>
                         <p className="font-bold leading-tight text-brand-ink">{name}</p>
                         <p className="text-xs font-semibold leading-tight text-muted-foreground">{role}</p>

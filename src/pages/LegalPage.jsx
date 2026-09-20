@@ -17,7 +17,7 @@ const sections = {
       text: "You can update or remove your personal details, resume and links from your profile at any time, and you can withdraw an application whenever you like."
     }, {
       heading: "Contact",
-      text: "Questions about this policy can be sent to careers@swiftlabtechnologies.com."
+      text: "Questions about this policy can be sent to swiftlabtechnologies@gmail.com."
     }]
   },
   terms: {

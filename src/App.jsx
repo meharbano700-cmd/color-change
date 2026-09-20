@@ -13,6 +13,7 @@ import workflowDeployment from "@/assets/workflow-deployment.jpg";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Header, Footer } from "@/components/layout";
+import { ApplyButton } from "@/components/InternshipApply";
 const partnerGroups = ["All partners", "Technology", "Learning", "Campus network"];
 const partners = [{
   name: "Google Cloud",
@@ -111,17 +112,19 @@ const foundingPartners = [{
   name: "Arslan Fayyaz",
   position: "Founder | CEO",
   image: partnerArslan,
-  linkedin: "https://www.linkedin.com/in/arslan/"
+  imagePosition: "center 20%",
+  linkedin: "https://www.linkedin.com/in/arslan-fayyaz-3a4781214"
 }, {
   name: "Samra Amir",
   position: "Co - Founder | CTO",
   image: partnerSamra,
-  linkedin: "https://www.linkedin.com/in/samra/"
+  linkedin: "https://www.linkedin.com/in/samra-amir-93389b26a/"
 }, {
   name: "Ayesha Nazar",
   position: "VP Engineering",
   image: partnerAyesha,
-  linkedin: "https://www.linkedin.com/in/ayesha/"
+  imagePosition: "center 22%",
+  linkedin: "https://www.linkedin.com/in/ayesha-nazar100/"
 }];
 const journeySteps = [{
   icon: Sparkles,
@@ -185,11 +188,11 @@ function JourneyShowcase() {
             </span>
             <h3>{activeJourney.title}</h3>
             <p>{activeJourney.text}</p>
-            {activeStep === journeySteps.length - 1 && <Button asChild variant="brand" size="lg">
-                <Link to="/courses">
-                  View past projects <ArrowRight />
-                </Link>
-              </Button>}
+            <Button asChild variant="brand" size="lg" className={`journey-cta${activeStep === journeySteps.length - 1 ? " is-visible" : ""}`}>
+              <Link to="/courses" tabIndex={activeStep === journeySteps.length - 1 ? 0 : -1} aria-hidden={activeStep !== journeySteps.length - 1}>
+                View past projects <ArrowRight />
+              </Link>
+            </Button>
           </div>
 
           <div className="journey-visual" key={`visual-${activeStep}`}>
@@ -286,7 +289,7 @@ export default function HomePage() {
           <div id="career-fields" className="relative mx-auto max-w-7xl">
             <div className="career-gallery-heading mx-auto max-w-4xl text-center">
               <p className="career-gallery-kicker">Internships available</p>
-              <h2>Choose your track. Build real proof</h2>
+              <h2>Open Positions. Choose Your Track</h2>
               <p className="career-gallery-lead">
                 Six focused internship tracks, each built around live projects, expert
                 mentors and outcomes recruiters actually recognize.
@@ -332,9 +335,7 @@ export default function HomePage() {
                     <span className="career-gallery-card-tag">Internship</span>
                     <h3>{title}</h3>
                     <p>{text}</p>
-                    <Button asChild variant="brand" size="sm" className="career-gallery-card-cta">
-                      <Link to="/apply">Apply Now <ArrowRight /></Link>
-                    </Button>
+                    <ApplyButton title={title} className="career-gallery-card-cta" withArrow />
                   </div>
                 </article>)}
             </div>
@@ -464,10 +465,8 @@ export default function HomePage() {
               {foundingPartners.map(partner => <article key={partner.name} className="founder-profile group">
                   <div className="founder-portrait-wrap">
                     <div className="founder-portrait">
-                      <img src={partner.image} width={640} height={800} loading="lazy" alt={`${partner.name}, ${partner.position} at Swift Lab Technologies`} />
+                      <img src={partner.image} width={640} height={800} loading="lazy" alt={`${partner.name}, ${partner.position} at Swift Lab Technologies`} style={partner.imagePosition ? { objectPosition: partner.imagePosition } : undefined} />
                     </div>
-                    <span className="founder-corner founder-corner-top" aria-hidden="true" />
-                    <span className="founder-corner founder-corner-bottom" aria-hidden="true" />
                   </div>
                   <div className="founder-details">
                     <div>

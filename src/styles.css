@@ -113,6 +113,8 @@
   --brand-coral: oklch(0.72 0.14 305.78);
   --brand-gold: oklch(0.84 0.1 305.78);
   --brand-ink: oklch(0.18 0.05 272);
+  --footer-purple: oklch(0.3 0.14 305.78);
+  --footer-purple-deep: oklch(0.22 0.1 303);
   --brand-violet: oklch(0.55 0.22 305.78);
   --brand-blue: oklch(0.7 0.19 305.78);
   --brand-cyan: oklch(0.84 0.1 305.78);
@@ -701,6 +703,60 @@
   margin-top: 1rem;
   align-self: flex-start;
 }
+
+/* Tiny "Coming soon" chip that appears beside an Apply button and removes itself. */
+.coming-soon-chip {
+  position: absolute;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: fit-content;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 30%, transparent);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--primary);
+  box-shadow: 0 8px 22px color-mix(in oklab, var(--footer-purple) 22%, transparent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: coming-soon-chip 1900ms ease both;
+}
+.coming-soon-chip svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+/* to the right of a compact button */
+.coming-soon-chip-side {
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  margin: auto 0 auto 0.5rem;
+}
+/* just above a full-width button */
+.coming-soon-chip-top {
+  bottom: calc(100% + 0.4rem);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+}
+@keyframes coming-soon-chip {
+  0% { opacity: 0; transform: translateY(4px) scale(0.94); }
+  10% { opacity: 1; transform: translateY(0) scale(1); }
+  82% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-2px) scale(0.98); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .coming-soon-chip { animation-name: coming-soon-chip-fade; }
+  @keyframes coming-soon-chip-fade {
+    0%, 100% { opacity: 0; }
+    10%, 82% { opacity: 1; }
+  }
+}
 .career-gallery-action {
   position: relative;
   z-index: 1;
@@ -858,19 +914,85 @@
   background: color-mix(in oklab, var(--track-accent) 10%, var(--card)) !important;
 }
 
+/* ---------- Buy Now enrollment dialog (Courses page) ---------- */
+.buy-now-dialog-head {
+  position: relative;
+  padding: 1.75rem 1.5rem 1.25rem;
+  background:
+    radial-gradient(circle at 12% 0%, color-mix(in oklab, var(--brand-coral) 20%, transparent), transparent 55%),
+    linear-gradient(160deg, color-mix(in oklab, var(--surface-mint) 70%, var(--card)) 0%, var(--card) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.buy-now-dialog-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  background: var(--brand-ink);
+  color: var(--background);
+  padding: 0.3rem 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.buy-now-dialog-price {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px dashed color-mix(in oklab, var(--brand-coral) 45%, transparent);
+  background: color-mix(in oklab, var(--card) 70%, transparent);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.85rem;
+  color: var(--foreground);
+}
+.buy-now-dialog-price strong {
+  color: var(--brand-ink);
+  font-weight: 800;
+}
+.buy-now-dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.5rem;
+}
+.buy-now-dialog-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--brand-ink);
+}
+.buy-now-dialog-label svg {
+  color: var(--primary);
+}
+.buy-now-dialog-footnote {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.15rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
+.buy-now-dialog-footnote svg {
+  flex-shrink: 0;
+  color: var(--primary);
+}
+
 .apply-track-scroll {
   display: flex;
   gap: 1rem;
   overflow-x: auto;
   padding: 1.5rem;
   scroll-snap-type: x proximity;
-  scrollbar-width: thin;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* old Edge/IE */
 }
-.apply-track-scroll::-webkit-scrollbar { height: 6px; }
-.apply-track-scroll::-webkit-scrollbar-thumb {
-  background: color-mix(in oklab, var(--track-accent) 35%, transparent);
-  border-radius: 999px;
-}
+.apply-track-scroll::-webkit-scrollbar { display: none; height: 0; } /* Chrome/Safari */
 
 .program-card {
   display: flex;
@@ -1571,7 +1693,7 @@
 .journey-stage {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  min-height: 420px;
+  height: 420px;
   max-width: 1100px;
   margin: 0 auto;
   overflow: hidden;
@@ -1634,7 +1756,8 @@
   font-size: 0.95rem;
   line-height: 1.75;
 }
-.journey-copy > a { margin-top: 1.5rem; }
+.journey-copy > a { margin-top: 1.5rem; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity 200ms ease; }
+.journey-copy > a.is-visible { visibility: visible; opacity: 1; pointer-events: auto; }
 
 .journey-visual {
   position: relative;
@@ -2066,6 +2189,7 @@
 .site-footer {
   padding: 4.75rem clamp(1.5rem, 6vw, 6.5rem) 2rem;
   overflow: hidden;
+  background: linear-gradient(165deg, var(--footer-purple) 0%, var(--footer-purple-deep) 100%);
 }
 
 .footer-main {
@@ -2141,7 +2265,7 @@
   width: 100%;
   min-height: 170px;
   border: 0;
-  background: color-mix(in oklab, var(--brand-teal) 10%, var(--brand-ink));
+  background: color-mix(in oklab, var(--brand-teal) 10%, var(--footer-purple));
 }
 
 .location-map-shell {
@@ -2158,7 +2282,7 @@
   flex-wrap: wrap;
   gap: 0.4rem;
   padding: 0.55rem;
-  background: var(--brand-ink);
+  background: var(--footer-purple);
 }
 
 .location-map-links a {
@@ -2175,7 +2299,7 @@
   inset: 0;
   display: grid;
   place-items: center;
-  background: color-mix(in oklab, var(--brand-ink) 92%, transparent);
+  background: color-mix(in oklab, var(--footer-purple) 92%, transparent);
   color: var(--primary-foreground);
   font-size: 0.78rem;
   font-weight: 700;
@@ -2304,30 +2428,10 @@
 .founder-profile:nth-child(2) { --founder-accent: var(--brand-gold); }
 .founder-profile:nth-child(3) { --founder-accent: var(--brand-teal); }
 
-.founder-profile::after {
-  content: "";
-  position: absolute;
-  inset: 0.5rem 0.5rem auto auto;
-  width: 3rem;
-  height: 3rem;
-  border-top: 1px solid color-mix(in oklab, var(--founder-accent) 58%, transparent);
-  border-right: 1px solid color-mix(in oklab, var(--founder-accent) 58%, transparent);
-  border-radius: 0;
-  pointer-events: none;
-}
-
-.founder-profile:nth-child(2) {
-  transform: translateY(1rem);
-}
-
 .founder-profile:hover {
   transform: translateY(-0.35rem);
   border-color: color-mix(in oklab, var(--founder-accent) 48%, transparent);
   box-shadow: 0 24px 55px color-mix(in oklab, var(--founder-accent) 22%, transparent);
-}
-
-.founder-profile:nth-child(2):hover {
-  transform: translateY(0.65rem);
 }
 
 .founder-portrait-wrap {
@@ -2374,29 +2478,6 @@
 .founder-profile:hover .founder-portrait img {
   transform: scale(1.035);
   filter: saturate(1) contrast(1.03);
-}
-
-.founder-corner {
-  position: absolute;
-  z-index: 3;
-  width: 2rem;
-  height: 2rem;
-  border-color: var(--founder-accent, var(--brand-coral));
-  pointer-events: none;
-}
-
-.founder-corner-top {
-  top: 0;
-  right: 0.75rem;
-  border-top: 2px solid;
-  border-right: 2px solid;
-}
-
-.founder-corner-bottom {
-  bottom: 0.75rem;
-  left: 0;
-  border-bottom: 2px solid;
-  border-left: 2px solid;
 }
 
 .founder-details {
@@ -2511,8 +2592,6 @@
   .founders-title { max-width: 11ch; }
   .founders-intro { max-width: 36rem; }
   .founders-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .founder-profile:nth-child(2) { transform: none; }
-  .founder-profile:nth-child(2):hover { transform: translateY(-0.35rem); }
   .founder-profile:last-child { grid-column: 1 / -1; width: calc(50% - 0.7rem); justify-self: center; }
 }
 
@@ -2555,7 +2634,7 @@
 
 @media (max-width: 1023px) {
   .journey-heading { gap: 0.75rem; margin-bottom: 1.75rem; }
-  .journey-stage { grid-template-columns: 1fr; min-height: 0; }
+  .journey-stage { grid-template-columns: 1fr; height: auto; min-height: 0; }
   .journey-copy { min-height: 340px; }
   .journey-visual { min-height: 360px; }
   .career-gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }

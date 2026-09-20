@@ -91,6 +91,65 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+// Separate endpoint for the "Buy Now" enrollment form on the Courses page.
+// Kept independent from /api/contact on purpose, even though it reuses the
+// same Gmail account/transporter, so the two forms can evolve separately.
+app.post("/api/enroll", async (req, res) => {
+  if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
+    console.error("Missing GMAIL_USER or GMAIL_APP_PASSWORD environment variables");
+    return res.status(500).json({
+      ok: false,
+      error: "Mail server isn't configured yet.",
+      debug: "GMAIL_USER or GMAIL_APP_PASSWORD not set in .env.local",
+    });
+  }
+
+  try {
+    const { name, email, phone, course, message } = req.body ?? {};
+
+    if (!name?.trim() || !email?.trim() || !phone?.trim() || !course?.trim()) {
+      return res.status(400).json({ ok: false, error: "Name, email, phone, and course are required." });
+    }
+    if (!isValidEmail(email)) {
+      return res.status(400).json({ ok: false, error: "Please provide a valid email address." });
+    }
+
+    const receiver = CONTACT_RECEIVER?.trim() || GMAIL_USER;
+
+    await getTransporter().sendMail({
+      from: `"Swift Lab Website" <${GMAIL_USER}>`,
+      to: receiver,
+      replyTo: email,
+      subject: `[Buy Now] ${course} — ${name}`,
+      text: `Course: ${course}\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message || "(none)"}`,
+      html: `
+        <h2>New course purchase enquiry</h2>
+        <p><strong>Course:</strong> ${course}</p>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Message:</strong></p>
+        <p>${String(message || "(none)").replace(/\n/g, "<br/>")}</p>
+      `,
+    });
+
+    return res.status(200).json({ ok: true });
+  } catch (err) {
+    console.error("Failed to send enrollment email:", {
+      message: err.message,
+      code: err.code,
+      responseCode: err.responseCode,
+      response: err.response,
+    });
+    const debug = [err.code, err.responseCode, err.response || err.message].filter(Boolean).join(" | ");
+    return res.status(500).json({
+      ok: false,
+      error: "Something went wrong sending your enrollment. Please try again.",
+      debug, // remove once everything is confirmed working
+    });
+  }
+});
+
 // In production, this same server also serves the built frontend (npm run build first)
 const distPath = path.join(__dirname, "dist");
 if (fs.existsSync(distPath)) {

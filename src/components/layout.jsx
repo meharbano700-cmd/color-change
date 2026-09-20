@@ -4,8 +4,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import { getCurrentUser, logoutUser } from "@/lib/auth";
+import swiftLabIcon from "@/assets/swift-lab-icon.png";
 
 export const navItems = ["Home", "Internships", "Services", "Courses", "Contact Us", "About Us"];
+
+// Which internships are open, and the Apply form link, live in @/lib/internships.
+export { isOpenInternship, internshipApplyFormUrl } from "@/lib/internships";
 
 export const navRoutes = {
   Home: "/",
@@ -56,9 +60,8 @@ export function LocationsMap() {
 
 export function Brand() {
   return <Link to="/" className="flex items-center gap-2.5" aria-label="Swift Lab Technologies home">
-      <span className="brand-spectrum relative grid size-10 place-items-center overflow-hidden rounded-md text-primary-foreground shadow-brand">
-        <Rocket className="size-5" aria-hidden="true" />
-        <span className="absolute -bottom-2 -right-2 size-5 rounded-full bg-brand-gold" />
+      <span className="relative grid size-11 place-items-center overflow-hidden">
+        <img src={swiftLabIcon} alt="" className="size-11 object-contain" aria-hidden="true" />
       </span>
       <span className="leading-none relative top-1.5">
         <span className="block font-display text-[1.04rem] font-extrabold">
@@ -223,13 +226,12 @@ export function Header() {
 }
 
 export function Footer() {
-  return <footer id="about-us" className="site-footer border-t border-border bg-brand-ink text-primary-foreground">
+  return <footer id="about-us" className="site-footer border-t border-border text-primary-foreground">
       <div className="footer-main mx-auto grid max-w-[1440px] border-b border-primary-foreground/15">
         <div className="footer-brand">
           <Link to="/" className="flex items-center gap-2.5" aria-label="Swift Lab Technologies home">
-            <span className="brand-spectrum relative grid size-10 place-items-center overflow-hidden rounded-md text-primary-foreground shadow-brand">
-              <Rocket className="size-5" aria-hidden="true" />
-              <span className="absolute -bottom-2 -right-2 size-5 rounded-full bg-brand-gold" />
+            <span className="relative grid size-11 place-items-center overflow-hidden">
+              <img src={swiftLabIcon} alt="" className="size-11 object-contain" aria-hidden="true" />
             </span>
             <span className="leading-none">
               <span className="block font-display text-[1.04rem] font-extrabold">

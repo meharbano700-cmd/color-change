@@ -1,4 +1,4 @@
-import { ArrowRight, Compass, GraduationCap, Heart, Sparkles, Target, Users } from "lucide-react";
+import { ArrowRight, Compass, GraduationCap, Heart, Linkedin, Sparkles, Target, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Header, Footer } from "@/components/layout";
 import { PageHero } from "@/components/PageHero";
@@ -61,15 +61,18 @@ const stats = [{
 const founders = [{
   name: "Arslan Fayyaz",
   position: "Founder | CEO",
-  image: partnerArslan
+  image: partnerArslan,
+  linkedin: "https://www.linkedin.com/in/arslan-fayyaz-3a4781214"
 }, {
   name: "Samra Amir",
   position: "Co - Founder | CTO",
-  image: partnerSamra
+  image: partnerSamra,
+  linkedin: "https://www.linkedin.com/in/samra-amir-93389b26a/"
 }, {
   name: "Ayesha Nazar",
   position: "VP Engineering",
-  image: partnerAyesha
+  image: partnerAyesha,
+  linkedin: "https://www.linkedin.com/in/ayesha-nazar100/"
 }];
 
 export default function AboutPage() {
@@ -140,10 +143,19 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="mt-12 grid gap-6 sm:grid-cols-3">
-              {founders.map(({ name, position, image }) => <div key={name} className="border border-border bg-card p-6 text-center shadow-soft">
-                  <img src={image} alt={name} className="mx-auto size-28 rounded-full object-cover" loading="lazy" />
+              {founders.map(({ name, position, image, linkedin }) => <div key={name} className="border border-border bg-card p-6 text-center shadow-soft">
+                  <img src={image} alt={name} className="mx-auto size-28 rounded-full object-cover" loading="lazy" style={name === "Arslan Fayyaz" ? { objectPosition: "center 0%" } : name === "Ayesha Nazar" ? { objectPosition: "center 0%" } : undefined} />
                   <h3 className="mt-5 text-lg font-extrabold text-brand-ink">{name}</h3>
                   <p className="text-sm font-semibold text-primary">{position}</p>
+                  <a
+                    href={linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${name} on LinkedIn`}
+                    className="mt-4 inline-flex size-9 items-center justify-center rounded-full bg-surface-mint text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                  >
+                    <Linkedin className="size-4" />
+                  </a>
                 </div>)}
             </div>
           </div>

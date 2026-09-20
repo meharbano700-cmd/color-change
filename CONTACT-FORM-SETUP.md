@@ -10,7 +10,7 @@ Your Gmail credentials are already filled in `.env.local`:
 |---|---|
 | `GMAIL_USER` | `swiftlabtechnologies@gmail.com` |
 | `GMAIL_APP_PASSWORD` | your 16-digit Gmail App Password |
-| `CONTACT_RECEIVER` | *(leave empty to receive at GMAIL_USER)* |
+| `CONTACT_RECEIVER` | `swiftlabtechnologies@gmail.com` (where submissions land) |
 
 ## Local development
 

@@ -69,7 +69,7 @@ export default function FAQPage() {
                 Apply Now <ArrowRight />
               </Link>
             </Button>} secondaryCta={<Button asChild variant="brandOutline" size="xl">
-              <a href="mailto:careers@swiftlabtechnologies.com">Ask us directly</a>
+              <a href="mailto:swiftlabtechnologies@gmail.com">Ask us directly</a>
             </Button>} />
 
         <section className="border-b border-border px-5 py-14 lg:px-8 lg:py-16">
@@ -106,8 +106,8 @@ export default function FAQPage() {
               message.
             </p>
             <Button asChild variant="brand" size="xl">
-              <a href="mailto:careers@swiftlabtechnologies.com">
-                <Mail /> careers@swiftlabtechnologies.com
+              <a href="mailto:swiftlabtechnologies@gmail.com">
+                <Mail /> swiftlabtechnologies@gmail.com
               </a>
             </Button>
           </div>
