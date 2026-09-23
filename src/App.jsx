@@ -224,7 +224,7 @@ export default function HomePage() {
       <Header />
       <main>
         <section id="home" className="hero-section relative overflow-hidden border-b border-border/60">
-          <div className="absolute -left-24 top-20 size-72 rounded-[44%_56%_64%_36%/50%_42%_58%_50%] bg-surface-mint opacity-75" aria-hidden="true" />
+          <div className="absolute -left-24 top-20 size-72 rounded-[44%_56%_64%_36%/50%_42%_58%_50%] hero-blob opacity-60" aria-hidden="true" />
           <div className="mx-auto grid min-h-[560px] max-w-7xl items-center gap-10 px-5 py-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
             <div className="relative z-10 max-w-2xl">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-secondary/70 px-4 py-2 text-xs font-bold uppercase text-brand-ink">

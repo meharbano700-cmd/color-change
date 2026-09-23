@@ -93,7 +93,7 @@ export default function FAQPage() {
           </div>
         </section>
 
-        <section className="px-5 py-16 lg:px-8">
+        <section className="section-grad-purple px-5 py-16 lg:px-8">
           <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 border border-brand-coral/25 bg-surface-coral p-10 text-center sm:p-14">
             <span className="grid size-14 place-items-center rounded-md bg-card text-brand-coral">
               <Mail className="size-6" />

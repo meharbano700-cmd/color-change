@@ -130,7 +130,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="px-5 py-14 lg:px-8 lg:py-16">
+        <section className="section-grad-purple px-5 py-14 lg:px-8 lg:py-16">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-bold uppercase text-brand-ink">The people behind it</p>

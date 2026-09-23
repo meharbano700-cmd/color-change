@@ -1,9 +1,10 @@
-import { ArrowRight, Bell, BriefcaseBusiness, ChevronDown, LifeBuoy, LogOut, Menu, MessageCircleQuestion, Play, Rocket, UserRound, X } from "lucide-react";
+import { ArrowRight, Bell, BriefcaseBusiness, ChevronDown, LifeBuoy, LogOut, Menu, Moon, MessageCircleQuestion, Play, Rocket, UserRound, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import { getCurrentUser, logoutUser } from "@/lib/auth";
+import { applyTheme, getTheme } from "@/lib/theme";
 import swiftLabIcon from "@/assets/swift-lab-icon.png";
 
 export const navItems = ["Home", "Internships", "Services", "Courses", "Contact Us", "About Us"];
@@ -60,8 +61,8 @@ export function LocationsMap() {
 
 export function Brand() {
   return <Link to="/" className="flex items-center gap-2.5" aria-label="Swift Lab Technologies home">
-      <span className="relative grid size-11 place-items-center overflow-hidden">
-        <img src={swiftLabIcon} alt="" className="size-11 object-contain" aria-hidden="true" />
+      <span className="relative grid size-[4.25rem] place-items-center overflow-hidden">
+        <img src={swiftLabIcon} alt="" className="size-[4.25rem] object-contain" aria-hidden="true" />
       </span>
       <span className="leading-none relative top-1.5">
         <span className="block font-display text-[1.04rem] font-extrabold">
@@ -106,7 +107,7 @@ export function Header() {
   }
 
   return <header className="sticky top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-xl">
-      <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-5 lg:px-8">
+      <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 lg:px-8">
         <Brand />
         <nav className="hidden items-center gap-1 xl:flex" aria-label="Main navigation">
           {navItems.map(item => {
@@ -172,6 +173,7 @@ export function Header() {
                 </Link>
               </Button>
             </>}
+          <ThemeToggle />
         </div>
         <Button variant="ghost" size="icon" className="xl:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(open => !open)}>
           {menuOpen ? <X /> : <Menu />}
@@ -198,6 +200,10 @@ export function Header() {
                 </Link>;
             })}
             <div className="mt-3 grid grid-cols-2 gap-2 border-t border-border pt-4">
+              <div className="col-span-2 flex items-center justify-between rounded-md bg-surface-mint/60 px-3 py-2">
+                <span className="text-sm font-semibold text-foreground/80">Colour theme</span>
+                <ThemeToggle />
+              </div>
               {session ? <>
                   <Button asChild variant="brandOutline">
                     <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
@@ -225,13 +231,28 @@ export function Header() {
     </header>;
 }
 
+export function ThemeToggle() {
+  const [theme, setTheme] = useState(getTheme);
+  const isForest = theme === "forest";
+
+  function toggle() {
+    const next = isForest ? "default" : "forest";
+    applyTheme(next, { animate: true });
+    setTheme(next);
+  }
+
+  return <button type="button" onClick={toggle} className="theme-toggle" aria-pressed={isForest} aria-label={isForest ? "Switch to the purple colour theme" : "Switch to the green colour theme"} title={isForest ? "Back to purple" : "Try the green theme"}>
+      <Moon className="theme-toggle-moon size-[1.1rem]" aria-hidden="true" />
+    </button>;
+}
+
 export function Footer() {
   return <footer id="about-us" className="site-footer border-t border-border text-primary-foreground">
       <div className="footer-main mx-auto grid max-w-[1440px] border-b border-primary-foreground/15">
         <div className="footer-brand">
           <Link to="/" className="flex items-center gap-2.5" aria-label="Swift Lab Technologies home">
-            <span className="relative grid size-11 place-items-center overflow-hidden">
-              <img src={swiftLabIcon} alt="" className="size-11 object-contain" aria-hidden="true" />
+            <span className="relative grid size-[4.25rem] place-items-center overflow-hidden">
+              <img src={swiftLabIcon} alt="" className="size-[4.25rem] object-contain" aria-hidden="true" />
             </span>
             <span className="leading-none">
               <span className="block font-display text-[1.04rem] font-extrabold">
@@ -248,7 +269,7 @@ export function Footer() {
             meaningful projects and thoughtful mentorship.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            {[[FaFacebook, "Facebook", "social-facebook"], [FaInstagram, "Instagram", "social-instagram"], [FaXTwitter, "X", "social-x"], [FaLinkedin, "LinkedIn", "social-linkedin"], [FaYoutube, "YouTube", "social-youtube"], [FaTiktok, "TikTok", "social-tiktok"]].map(([Icon, label, colorClass]) => {
+            {[[FaFacebook, "Facebook", "social-facebook"], [FaInstagram, "Instagram", "social-instagram"], [FaLinkedin, "LinkedIn", "social-linkedin"]].map(([Icon, label, colorClass]) => {
             const SocialIcon = Icon;
             return <a key={label} href="/#about-us" aria-label={label} title={label} className={`footer-social ${colorClass}`}>
                   <SocialIcon className="size-[22px]" />
