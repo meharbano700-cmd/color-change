@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { getCurrentUser, logoutUser } from "@/lib/auth";
 import { applyTheme, getTheme } from "@/lib/theme";
 import swiftLabIcon from "@/assets/swift-lab-icon.png";
+import swiftLabIconLight from "@/assets/swift-lab-icon-light.png";
+import swiftLabIconGreen from "@/assets/swift-lab-icon-green.png";
+import swiftLabIconGreenLight from "@/assets/swift-lab-icon-green-light.png";
 
 export const navItems = ["Home", "Internships", "Services", "Courses", "Contact Us", "About Us"];
 
@@ -34,6 +37,23 @@ export const internshipLinks = [{
   icon: MessageCircleQuestion
 }];
 
+export const socialLinks = [{
+  label: "Instagram",
+  href: "https://www.instagram.com/swiftlabtechnologies?stkn=ancyZHk1ZWIwem9q",
+  icon: FaInstagram,
+  className: "social-instagram"
+}, {
+  label: "Facebook",
+  href: "https://www.facebook.com/share/19YXHJAhBC/",
+  icon: FaFacebook,
+  className: "social-facebook"
+}, {
+  label: "LinkedIn",
+  href: "https://www.linkedin.com/company/swift-lab-technologies/",
+  icon: FaLinkedin,
+  className: "social-linkedin"
+}];
+
 export const officeLocations = [{
   name: "United States",
   href: "https://www.openstreetmap.org/search?query=United%20States"
@@ -59,17 +79,21 @@ export function LocationsMap() {
     </div>;
 }
 
-export function Brand() {
-  return <Link to="/" className="flex items-center gap-2.5" aria-label="Swift Lab Technologies home">
-      <span className="relative grid size-[4.25rem] place-items-center overflow-hidden">
-        <img src={swiftLabIcon} alt="" className="size-[4.25rem] object-contain" aria-hidden="true" />
+export function Brand({
+  onDark = false
+}) {
+  const logoClass = onDark ? "h-10 w-auto" : "h-11 w-auto";
+  return <Link to="/" className="flex items-center gap-3" aria-label="Swift Lab Technologies home">
+      <span className="grid place-items-center">
+        <img src={onDark ? swiftLabIconLight : swiftLabIcon} alt="" className={`brand-logo-default ${logoClass}`} aria-hidden="true" />
+        <img src={onDark ? swiftLabIconGreenLight : swiftLabIconGreen} alt="" className={`brand-logo-forest ${logoClass}`} aria-hidden="true" />
       </span>
-      <span className="leading-none relative top-1.5">
-        <span className="block font-display text-[1.04rem] font-extrabold">
-          <span className="text-brand-ink">SWIFT </span>
-          <span className="brand-spectrum-text">LAB</span>
+      <span className="leading-none">
+        <span className="block font-display text-[1.2rem] font-extrabold tracking-[0.02em]">
+          <span className={onDark ? "text-white" : "text-brand-ink"}>SWIFT </span>
+          <span className={onDark ? "brand-lab-footer" : "brand-spectrum-text"}>LAB</span>
         </span>
-        <span className="mt-1 block text-[0.58rem] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+        <span className={`mt-1.5 block text-[0.56rem] font-semibold uppercase tracking-[0.34em] ${onDark ? "text-white/75" : "text-muted-foreground"}`}>
           Technologies
         </span>
       </span>
@@ -250,31 +274,20 @@ export function Footer() {
   return <footer id="about-us" className="site-footer border-t border-border text-primary-foreground">
       <div className="footer-main mx-auto grid max-w-[1440px] border-b border-primary-foreground/15">
         <div className="footer-brand">
-          <Link to="/" className="flex items-center gap-2.5" aria-label="Swift Lab Technologies home">
-            <span className="relative grid size-[4.25rem] place-items-center overflow-hidden">
-              <img src={swiftLabIcon} alt="" className="size-[4.25rem] object-contain" aria-hidden="true" />
-            </span>
-            <span className="leading-none">
-              <span className="block font-display text-[1.04rem] font-extrabold">
-                <span className="text-white">SWIFT </span>
-                <span className="brand-spectrum-text">LAB</span>
-              </span>
-              <span className="mt-1 block text-[0.58rem] font-bold uppercase tracking-[0.18em] text-white">
-                Technologies
-              </span>
-            </span>
-          </Link>
+          <Brand onDark />
           <p className="mt-6 max-w-md text-sm leading-7 text-primary-foreground/65">
             Building the next generation of technology talent through practical learning,
             meaningful projects and thoughtful mentorship.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            {[[FaFacebook, "Facebook", "social-facebook"], [FaInstagram, "Instagram", "social-instagram"], [FaLinkedin, "LinkedIn", "social-linkedin"]].map(([Icon, label, colorClass]) => {
-            const SocialIcon = Icon;
-            return <a key={label} href="/#about-us" aria-label={label} title={label} className={`footer-social ${colorClass}`}>
-                  <SocialIcon className="size-[22px]" />
-                </a>;
-          })}
+            {socialLinks.map(({
+            label,
+            href,
+            icon: SocialIcon,
+            className
+          }) => <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={`Swift Lab Technologies on ${label}`} title={label} className={`footer-social ${className}`}>
+                <SocialIcon className="size-[22px]" aria-hidden="true" />
+              </a>)}
           </div>
         </div>
         <div className="footer-links-grid">

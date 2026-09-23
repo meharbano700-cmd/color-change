@@ -88,57 +88,62 @@
   --color-brand-blue: var(--brand-blue);
 }
 
+/*
+ * Default theme: soft light background, purple (light / soft / dark) up front,
+ * navy-blue touches for depth, and mint green as a small accent.
+ * (The green "Forest" theme at the bottom of this file is unchanged.)
+ */
 :root {
-  --g-h: 305;
-  --g-h2: 295;
+  --g-h: 300;
+  --g-h2: 285;
   --radius: 0.5rem;
-  --background: oklch(0.985 0.008 265);
-  --foreground: oklch(0.19 0.045 270);
+  --background: oklch(0.985 0.008 295);
+  --foreground: oklch(0.23 0.06 275);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.19 0.045 270);
+  --card-foreground: oklch(0.23 0.06 275);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.19 0.045 270);
-  --primary: oklch(0.5 0.1 305);
-  --primary-foreground: oklch(0.99 0.005 255);
-  --secondary: oklch(0.88 0.045 305);
-  --secondary-foreground: oklch(0.34 0.1 305);
-  --muted: oklch(0.955 0.018 270);
-  --muted-foreground: oklch(0.48 0.045 270);
-  --accent: oklch(0.91 0.035 305);
-  --accent-foreground: oklch(0.38 0.09 305);
+  --popover-foreground: oklch(0.23 0.06 275);
+  --primary: oklch(0.48 0.17 295);
+  --primary-foreground: oklch(0.99 0.005 295);
+  --secondary: oklch(0.9 0.05 298);
+  --secondary-foreground: oklch(0.33 0.13 295);
+  --muted: oklch(0.96 0.016 290);
+  --muted-foreground: oklch(0.48 0.05 275);
+  --accent: oklch(0.94 0.042 298);
+  --accent-foreground: oklch(0.38 0.14 295);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.89 0.025 275);
-  --input: oklch(0.89 0.025 275);
-  --ring: oklch(0.5 0.1 305);
-  --brand-teal: oklch(0.5 0.1 305);
-  --brand-coral: oklch(0.7 0.07 305);
-  --brand-gold: oklch(0.83 0.055 305);
-  --brand-ink: oklch(0.24 0.085 253);
-  --footer-purple: oklch(0.26 0.09 253);
-  --footer-purple-deep: oklch(0.14 0.07 253);
-  --brand-violet: oklch(0.5 0.1 305);
-  --brand-blue: oklch(0.55 0.11 250);
-  --brand-cyan: oklch(0.83 0.045 305);
-  --experience-teal: oklch(0.75 0.08 305);
-  --surface-soft: oklch(0.95 0.028 276);
-  --surface-mint: oklch(0.85 0.05 305);
-  --surface-coral: oklch(0.945 0.024 305);
-  --luxe-cream: oklch(0.975 0.016 275);
-  --luxe-forest: oklch(0.28 0.045 250);
+  --border: oklch(0.9 0.03 290);
+  --input: oklch(0.9 0.03 290);
+  --ring: oklch(0.48 0.17 295);
+  --brand-teal: oklch(0.48 0.17 295);
+  --brand-coral: oklch(0.58 0.17 300);
+  --brand-gold: oklch(0.8 0.09 300);
+  --brand-ink: oklch(0.25 0.08 265);
+  --footer-purple: oklch(0.28 0.12 285);
+  --footer-purple-deep: oklch(0.17 0.08 265);
+  --brand-violet: oklch(0.5 0.17 295);
+  --brand-blue: oklch(0.45 0.13 262);
+  --brand-cyan: oklch(0.84 0.09 160);
+  --experience-teal: oklch(0.6 0.16 298);
+  --surface-soft: oklch(0.955 0.025 285);
+  --surface-mint: oklch(0.9 0.055 298);
+  --surface-coral: oklch(0.945 0.032 300);
+  --luxe-cream: oklch(0.975 0.014 290);
+  --luxe-forest: oklch(0.28 0.08 268);
   --social-facebook: #1877f2;
   --social-instagram: #e4405f;
   --social-x: #000000;
   --social-linkedin: #0a66c2;
   --social-youtube: #ff0000;
   --social-tiktok: #00f2ea;
-  --hero: oklch(0.85 0.05 305);
-  --shadow-soft: 0 16px 45px oklch(0.233 0.0386 248.43 / 0.1);
-  --shadow-brand: 0 10px 26px oklch(0.5 0.1 305 / 0.3);
-  --shadow-brand-lg: 0 16px 34px oklch(0.5 0.1 305 / 0.38);
-  --shadow-coral: 0 12px 30px oklch(0.7 0.07 305 / 0.25);
-  --shadow-workflow: 0 30px 80px oklch(0.233 0.0386 248.43 / 0.15), 0 8px 28px oklch(0.5 0.1 305 / 0.14);
-  --shadow-story: 0 22px 55px oklch(0.233 0.0386 248.43 / 0.12);
+  --hero: oklch(0.9 0.06 300);
+  --shadow-soft: 0 16px 45px oklch(0.25 0.08 270 / 0.1);
+  --shadow-brand: 0 10px 26px oklch(0.48 0.17 295 / 0.3);
+  --shadow-brand-lg: 0 16px 34px oklch(0.48 0.17 295 / 0.38);
+  --shadow-coral: 0 12px 30px oklch(0.58 0.17 300 / 0.26);
+  --shadow-workflow: 0 30px 80px oklch(0.25 0.08 270 / 0.15), 0 8px 28px oklch(0.48 0.17 295 / 0.14);
+  --shadow-story: 0 22px 55px oklch(0.25 0.08 270 / 0.12);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -2756,11 +2761,11 @@
 }
 
 @utility brand-spectrum {
-  background: var(--brand-ink);
+  background: linear-gradient(135deg, var(--primary), color-mix(in oklab, var(--primary) 70%, var(--brand-coral)));
 }
 
 @utility brand-spectrum-warm {
-  background: var(--brand-ink);
+  background: linear-gradient(135deg, var(--brand-ink), color-mix(in oklab, var(--brand-ink) 75%, var(--brand-blue)));
 }
 
 @utility brand-spectrum-text {
@@ -3108,6 +3113,64 @@
   :root.theme-fading *, :root.theme-fading *::before, :root.theme-fading *::after { transition: none !important; }
 }
 
-/* Recolour the purple logo mark to green in the forest theme */
-:root img[src*="swift-lab-icon"] { transform: scaleX(-1); }
-:root[data-theme="forest"] img[src*="swift-lab-icon"] { filter: hue-rotate(-125deg) saturate(1.15); transition: filter 0.5s ease; }
+/* Logo: purple in the default theme, green in the green theme */
+.brand-logo-forest { display: none; }
+:root[data-theme="forest"] .brand-logo-default { display: none; }
+:root[data-theme="forest"] .brand-logo-forest { display: block; }
+.brand-lab-footer { color: oklch(0.8 0.12 300); }
+:root[data-theme="forest"] .brand-lab-footer { color: oklch(0.82 0.14 152); }
+
+/* Default theme only: readable footer hover on the dark footer + a soft mint section as a green accent */
+:root:not([data-theme="forest"]) .footer-link-list a:hover { color: var(--brand-gold); }
+:root:not([data-theme="forest"]) .section-grad-green {
+  background:
+    radial-gradient(circle at 8% 90%, oklch(0.88 0.09 158 / 0.32), transparent 36%),
+    radial-gradient(circle at 92% 8%, oklch(0.9 0.06 300 / 0.26), transparent 34%),
+    linear-gradient(160deg, oklch(0.978 0.016 165) 0%, oklch(0.95 0.036 160) 100%);
+}
+
+/* Default theme only: every hero gets a purple gradient, a touch darker on the left and light on the right */
+:root:not([data-theme="forest"]) .hero-purple {
+  background:
+    radial-gradient(70% 90% at 0% 40%, oklch(0.83 0.1 297 / 0.4), transparent 70%),
+    linear-gradient(100deg, oklch(0.88 0.07 297) 0%, oklch(0.93 0.045 299) 42%, oklch(0.982 0.014 300) 100%);
+}
+
+/* Round "balloon" blob on the left of the Apply hero and the Home hero (same shape on both) */
+.hero-blob-shape { background: var(--surface-mint); opacity: 0.7; }
+:root:not([data-theme="forest"]) .hero-blob-shape {
+  background: radial-gradient(circle at 32% 28%, oklch(0.975 0.02 300 / 0.95), oklch(0.84 0.09 297 / 0.6) 72%);
+  opacity: 1;
+}
+
+/*
+ * Default theme only: section backgrounds, kept light.
+ *  - soft light purple  : journey, workflow, services (Apply / How it works)
+ *  - purple, darker left -> light right : home tracks, partners, bottom CTA sections
+ *  - very light grey    : internships gallery, founders
+ */
+:root:not([data-theme="forest"]) .journey-showcase {
+  background:
+    radial-gradient(circle at 10% 15%, oklch(0.9 0.06 300 / 0.28), transparent 38%),
+    linear-gradient(180deg, oklch(0.955 0.03 300) 0%, oklch(0.982 0.012 300) 100%);
+}
+:root:not([data-theme="forest"]) .workflow-section {
+  background:
+    radial-gradient(circle at 4% 10%, oklch(0.9 0.06 300 / 0.26), transparent 34%),
+    linear-gradient(145deg, oklch(0.957 0.03 300) 0%, oklch(0.985 0.01 300) 48%, oklch(0.958 0.028 290) 100%);
+}
+:root:not([data-theme="forest"]) .services-section {
+  background:
+    radial-gradient(circle at 14% 12%, color-mix(in oklab, var(--brand-coral) 14%, transparent), transparent 32%),
+    radial-gradient(circle at 88% 82%, color-mix(in oklab, var(--brand-cyan) 18%, transparent), transparent 30%),
+    linear-gradient(160deg, var(--background) 0%, color-mix(in oklab, var(--surface-mint) 40%, var(--background)) 100%);
+}
+:root:not([data-theme="forest"]) .tracks-offer-section,
+:root:not([data-theme="forest"]) .section-grad-purple,
+:root:not([data-theme="forest"]) .partners-section {
+  background: linear-gradient(100deg, oklch(0.91 0.055 298) 0%, oklch(0.947 0.034 299) 45%, oklch(0.984 0.012 300) 100%);
+}
+:root:not([data-theme="forest"]) .career-gallery,
+:root:not([data-theme="forest"]) .founders-section {
+  background: oklch(0.968 0.004 270);
+}

@@ -57,7 +57,7 @@ export function PageHero({ eyebrow, slides, primaryCta, secondaryCta, variant = 
 
   /* ---------------- spotlight : centred copy + wide image band ---------------- */
   if (variant === "spotlight") {
-    return <section className="page-slider hero-spotlight relative overflow-hidden border-b border-border/60">
+    return <section className="page-slider hero-purple hero-spotlight relative overflow-hidden border-b border-border/60">
         <div className="hero-spotlight-glow" aria-hidden="true" />
         <div className="relative mx-auto max-w-5xl px-5 pt-12 text-center lg:px-8 lg:pt-16">
           {eyebrowPill}
@@ -95,7 +95,7 @@ export function PageHero({ eyebrow, slides, primaryCta, secondaryCta, variant = 
 
   /* ---------------- showcase : arch image left, copy right ---------------- */
   if (variant === "showcase") {
-    return <section className="page-slider hero-showcase relative overflow-hidden border-b border-border/60">
+    return <section className="page-slider hero-purple hero-showcase relative overflow-hidden border-b border-border/60">
         <span className="hero-showcase-stripe" aria-hidden="true" />
         <div className="relative mx-auto grid min-h-[460px] max-w-7xl items-center gap-10 px-5 py-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-8 lg:py-16">
           <div className="hero-showcase-media order-2">
@@ -130,7 +130,7 @@ export function PageHero({ eyebrow, slides, primaryCta, secondaryCta, variant = 
 
   /* ---------------- stack : copy left, tilted photo cards right ---------------- */
   if (variant === "stack") {
-    return <section className="page-slider hero-stack relative overflow-hidden border-b border-border/60">
+    return <section className="page-slider hero-purple hero-stack relative overflow-hidden border-b border-border/60">
         <span className="hero-stack-grid" aria-hidden="true" />
         <div className="relative mx-auto grid min-h-[500px] max-w-7xl items-center gap-12 px-5 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-16">
           <div className="max-w-xl">
@@ -172,7 +172,7 @@ export function PageHero({ eyebrow, slides, primaryCta, secondaryCta, variant = 
      frame and a solid ring, so About and Contact feel related but not identical. */
   if (variant === "ribbon" || variant === "ribbonAlt") {
     const isAlt = variant === "ribbonAlt";
-    return <section className={`page-slider hero-ribbon ${isAlt ? "hero-ribbon-alt" : ""} relative overflow-hidden border-b border-border/60`}>
+    return <section className={`page-slider hero-purple hero-ribbon ${isAlt ? "hero-ribbon-alt" : ""} relative overflow-hidden border-b border-border/60`}>
         <span className="hero-ribbon-wave" aria-hidden="true" />
         <div className={`relative mx-auto grid min-h-[420px] max-w-6xl items-center gap-10 px-5 py-12 lg:px-8 lg:py-14 ${isAlt ? "lg:grid-cols-[0.9fr_1.1fr]" : "lg:grid-cols-[1.1fr_0.9fr]"}`}>
           <div className="max-w-xl">
@@ -208,8 +208,8 @@ export function PageHero({ eyebrow, slides, primaryCta, secondaryCta, variant = 
   }
 
   /* ---------------- blueprint (default) ---------------- */
-  return <section className="page-slider relative overflow-hidden border-b border-border/60">
-      <div className="absolute -left-24 top-16 size-72 rounded-[44%_56%_64%_36%/50%_42%_58%_50%] bg-surface-mint opacity-70" aria-hidden="true" />
+  return <section className="page-slider hero-purple relative overflow-hidden border-b border-border/60">
+      <div className="hero-blob-shape absolute -left-24 top-16 size-72 rounded-[44%_56%_64%_36%/50%_42%_58%_50%]" aria-hidden="true" />
 
       <div className="mx-auto grid min-h-[500px] max-w-7xl items-center gap-10 px-5 py-10 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-14">
         <div className="relative z-10 max-w-xl">
